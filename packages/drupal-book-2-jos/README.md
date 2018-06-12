@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/LRNWebComponents/drupal-book-2-jos.svg?branch=master)](https://travis-ci.org/LRNWebComponents/drupal-book-2-jos)
+[![Build Status](https://travis-ci.org/heymp/drupal-book-2-jos.svg?branch=master)](https://travis-ci.org/heymp/drupal-book-2-jos)
 
 
 # drupal-book-2-jos
