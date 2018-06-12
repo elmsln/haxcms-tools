@@ -4,4 +4,4 @@ os:
   - linux
 node_js:
   - "stable"
-  - "6"
+  - "8"
