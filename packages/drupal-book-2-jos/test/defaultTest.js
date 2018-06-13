@@ -16,7 +16,12 @@ module.exports = async () => {
       const jos = await book2Jos(xml)
       assert(jos.items.length === 415)
     })
-    it('it should be formatted properly', async function () {
+    it('it should contain a title', async function () {
+      const xml = fs.readFileSync(path.join(__dirname, 'test.xml'), 'utf8')
+      const jos = await book2Jos(xml)
+      assert(jos.title === 'Outline')
+    })
+    it('an item should be formatted properly', async function () {
       const xml = fs.readFileSync(path.join(__dirname, 'test.xml'), 'utf8')
       const jos = await book2Jos(xml)
       assert(_.has(jos, 'items[10]'))

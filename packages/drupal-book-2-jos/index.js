@@ -31,7 +31,7 @@ module.exports = async (xml) => {
     .filter(item => item.id !== topLevelItem.uuid[0])
 
     // return the new jos
-    return Object.assign({}, {title: topLevelItem.title, items: jsonFormattedItems})
+    return Object.assign({}, {title: topLevelItem.title[0], items: jsonFormattedItems})
   }
   else {
     throw new Error('Invalid xml structure.')
