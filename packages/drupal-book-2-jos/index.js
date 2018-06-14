@@ -27,8 +27,6 @@ module.exports = async (xml) => {
       // return the new item
       return _i
     })
-    // remove the top level item
-    .filter(item => item.id !== topLevelItem.uuid[0])
 
     // return the new jos
     return Object.assign({}, {title: topLevelItem.title[0], items: jsonFormattedItems})
