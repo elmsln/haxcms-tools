@@ -1,0 +1,9 @@
+{
+  "name": "haxcms-tools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^3.13.1"
+  }
+}
