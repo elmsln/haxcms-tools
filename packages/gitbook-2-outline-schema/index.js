@@ -15,7 +15,7 @@ const parseOutline = (outlinePath) => {
   const title = $('#summary').text();
   const firstUl = $('ul').first();
   let treeAssembled = assembleTree($, firstUl);
-  let outline = Object.assign({}, { title: title, tree: tree });
+  let outline = Object.assign({}, { title: title, items: tree });
   return outline;
 }
 

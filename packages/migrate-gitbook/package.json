@@ -1,0 +1,70 @@
+{
+  "name": "@haxcms/migrate-gitbook",
+  "description": "Migrate a Gitbook site to HAXcms.",
+  "version": "0.0.0",
+  "author": "heyMP <mgp140@gmail.com>",
+  "bin": {
+    "migrate-gitbook": "./bin/run"
+  },
+  "bugs": {
+    "url": "https://github.com/elmsln/haxcms-tools/issues"
+  },
+  "dependencies": {
+    "@haxcms/gitbook-2-outline-schema": "^0.0.0",
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^2",
+    "fs-extra": "^7.0.1",
+    "markdown": "^0.5.0"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@oclif/test": "^1",
+    "chai": "^4",
+    "eslint": "^5.13",
+    "eslint-config-oclif": "^3.1",
+    "globby": "^8",
+    "mocha": "^5",
+    "nyc": "^13"
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "lib"
+  ],
+  "homepage": "https://github.com/elmsln/haxcms-tools#readme",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "Apache-2.0",
+  "main": "src/index.js",
+  "oclif": {
+    "commands": "./src/commands",
+    "bin": "migrate-gitbook",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elmsln/haxcms-tools.git"
+  },
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint .",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
+    "version": "oclif-dev readme && git add README.md"
+  }
+}
