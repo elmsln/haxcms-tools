@@ -1,29 +1,27 @@
 const { Command, flags } = require('@oclif/command')
 const { join, parse } = require('path')
+const { pathExistsSync, readFileSync, outputFileSync } = require('fs-extra')
 const parseGitbookOutline = require('@haxcms/gitbook-2-outline-schema')
 const markdown = require("markdown").markdown;
-const { existsSync } = require('fs')
-const memFs = require("mem-fs");
-const editor = require("mem-fs-editor");
-const store = memFs.create();
-const fs = editor.create(store);
 
 class HaxcmsMigrateGitbookCommand extends Command {
 
   async run() {
     const { flags, args } = this.parse(HaxcmsMigrateGitbookCommand)
     const { summaryFile } = args
+    const summaryLocation = join(process.cwd(), summaryFile)
+    const gitbookLocation = parse(summaryLocation).dir
     // get the count
-    let outline = parseGitbookOutline(join(process.cwd(), summaryFile))
+    let outline = parseGitbookOutline(summaryLocation)
     // get the number of items
     const count = outline.items.length
     // loop over and create files
     if (outline.items && outline.items.length > 0) {
       outline.items = outline.items.map(i => {
-        const path = join(process.cwd(), i.location)
-        if (existsSync(path)) {
+        const path = join(gitbookLocation, i.location)
+        if (pathExistsSync(path)) {
           // get file contents
-          const fileContents = fs.read(path, 'utf8')
+          const fileContents = readFileSync(path, 'utf8')
           // convert from markdown to html
           const html = markdown.toHTML(fileContents)
           // define what the new location path should be and switch the extention to .html
@@ -31,19 +29,23 @@ class HaxcmsMigrateGitbookCommand extends Command {
           // now define the final destination where the file will go on the machine
           const destination = join(process.cwd(), flags.destination, newLocation)
           // create the file
-          fs.write(destination, html)
+          outputFileSync(destination, html)
           // update the outline
           return Object.assign({}, i, { location: newLocation })
         }
       })
-      fs.write(join(process.cwd(), flags.destination, 'site.json'), JSON.stringify(outline, null, 4))
+      // save it to site.json
+      const siteJsonLocation = join(process.cwd(), flags.destination, 'site.json')
+      // see if we should merge it
+      if (pathExistsSync(siteJsonLocation)) {
+        // get the current one
+        const currentOutline = readFileSync(siteJsonLocation, 'utf8')
+        // merge it with the new one
+        outline = Object.assign({}, JSON.parse(currentOutline), outline)
+      }
+      // update site.json
+      outputFileSync(siteJsonLocation, JSON.stringify(outline, null, 4))
     }
-    // store.each(file => {
-    //   console.log(file.contents)
-    // })
-    fs.commit(() => {
-      console.log('written')
-    })
   }
 }
 
