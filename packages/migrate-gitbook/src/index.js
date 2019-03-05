@@ -15,31 +15,35 @@ class HaxcmsMigrateGitbookCommand extends Command {
     const { summaryFile } = args
     // get the count
     let outline = parseGitbookOutline(join(process.cwd(), summaryFile))
-    const generator = new Generator()
-    // // get the number of items
-    // const count = outline.items.length
-    // // loop over and create files
-    // if (outline.items && outline.items.length > 0) {
-    //   outline.items = outline.items.map(i => {
-    //     const path = join(process.cwd(), i.location)
-    //     if (existsSync(path)) {
-    //       // get file contents
-    //       const fileContents = fs.read(path, 'utf8')
-    //       // convert from markdown to html
-    //       const html = markdown.toHTML(fileContents)
-    //       // define what the new location path should be and switch the extention to .html
-    //       const newLocation = join('pages', parse(i.location).dir, parse(i.location).name + '.html', )
-    //       // now define the final destination where the file will go on the machine
-    //       const destination = join(process.cwd(), flags.destination, newLocation)
-    //       // create the file
-    //       fs.write(destination, html)
-    //       // update the outline
-    //       return Object.assign({}, i, { location: newLocation })
-    //     }
-    //   })
-    //   // save the new site.json
-    //   fs.write(join(process.cwd(), flags.destination, 'site.json'), JSON.stringify(outline, null, 4))
-    // }
+    // get the number of items
+    const count = outline.items.length
+    // loop over and create files
+    if (outline.items && outline.items.length > 0) {
+      outline.items = outline.items.map(i => {
+        const path = join(process.cwd(), i.location)
+        if (existsSync(path)) {
+          // get file contents
+          const fileContents = fs.read(path, 'utf8')
+          // convert from markdown to html
+          const html = markdown.toHTML(fileContents)
+          // define what the new location path should be and switch the extention to .html
+          const newLocation = join('pages', parse(i.location).dir, parse(i.location).name + '.html', )
+          // now define the final destination where the file will go on the machine
+          const destination = join(process.cwd(), flags.destination, newLocation)
+          // create the file
+          fs.write(destination, html)
+          // update the outline
+          return Object.assign({}, i, { location: newLocation })
+        }
+      })
+      fs.write(join(process.cwd(), flags.destination, 'site.json'), JSON.stringify(outline, null, 4))
+    }
+    // store.each(file => {
+    //   console.log(file.contents)
+    // })
+    fs.commit(() => {
+      console.log('written')
+    })
   }
 }
 
