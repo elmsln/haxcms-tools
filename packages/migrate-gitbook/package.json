@@ -14,8 +14,10 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",
+    "@oclif/plugin-plugins": "^1.7.7",
     "markdown": "^0.5.0",
-    "fs-extra": "^7.0.1"
+    "fs-extra": "^7.0.1",
+    "hooks": "^0.3.2"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
@@ -47,10 +49,12 @@
   "license": "Apache-2.0",
   "main": "src/index.js",
   "oclif": {
+    "type": "core",
     "commands": "./src/commands",
     "bin": "migrate-gitbook",
     "plugins": [
-      "@oclif/plugin-help"
+      "@oclif/plugin-help",
+      "@oclif/plugin-plugins"
     ]
   },
   "publishConfig": {

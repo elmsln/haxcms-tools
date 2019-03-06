@@ -23,7 +23,11 @@ class HaxcmsMigrateGitbookCommand extends Command {
           // get file contents
           const fileContents = readFileSync(path, 'utf8')
           // convert from markdown to html
-          const html = markdown.toHTML(fileContents)
+          let html = markdown.toHTML(fileContents)
+
+          // allow middleware to alter page
+          html = this.convertPage(html)
+
           // define what the new location path should be and switch the extention to .html
           const newLocation = join('pages', parse(i.location).dir, parse(i.location).name + '.html', )
           // now define the final destination where the file will go on the machine
@@ -46,6 +50,11 @@ class HaxcmsMigrateGitbookCommand extends Command {
       // update site.json
       outputFileSync(siteJsonLocation, JSON.stringify(outline, null, 4))
     }
+  }
+
+  convertPage(html) {
+    // see if there is a middleware
+    return html
   }
 }
 
