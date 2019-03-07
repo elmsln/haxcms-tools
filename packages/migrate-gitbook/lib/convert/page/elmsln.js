@@ -33,10 +33,8 @@ module.exports = async (html, destination) => {
       })
       return obj
     })
-  
-  // for each token find out what kind it is and fetch the data from
-  // the server
-  tokensContents.forEach(async i => {
+
+  for (let i of tokensContents) {
     switch (i.display_mode) {
       case 'image':
         await imagesScrape(i.item, destination)
@@ -45,7 +43,7 @@ module.exports = async (html, destination) => {
       default:
         break;
     }
-  })
+  }
 
   return convertedHTML
 }
@@ -65,4 +63,5 @@ const imagesScrape = async (nid, destination) => {
   writeFileSync(join(destination, 'assets', basename(imageUrl)), await imageSource.buffer());
   // close the browser
   await browser.close()
+  return 'asdf'
 }
