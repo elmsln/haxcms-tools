@@ -3,6 +3,12 @@ const { join, parse } = require('path')
 const { pathExistsSync, readFileSync, outputFileSync } = require('fs-extra')
 const parseGitbookOutline = require('@haxcms/gitbook-2-outline-schema')
 const markdown = require("markdown").markdown;
+const elmslnConverter = require('../../lib/convert/page/elmsln.js')
+const Batch = require('batch')
+const batch = new Batch
+batch.concurrency(1)
+const _cliProgress = require('cli-progress');
+const progressBar = new _cliProgress.Bar({}, _cliProgress.Presets.shades_classic);
 
 class RunCommand extends Command {
 
@@ -15,28 +21,15 @@ class RunCommand extends Command {
     let outline = parseGitbookOutline(summaryLocation)
     // get the number of items
     const count = outline.items.length
+
     // loop over and create files
     if (outline.items && outline.items.length > 0) {
-      outline.items = outline.items.map(i => {
-        const path = join(gitbookLocation, i.location)
-        if (pathExistsSync(path)) {
-          // get file contents
-          const fileContents = readFileSync(path, 'utf8')
-          // convert from markdown to html
-          let html = markdown.toHTML(fileContents)
-
-          // allow middleware to alter page
-          html = this.convertPage(html)
-
-          // define what the new location path should be and switch the extention to .html
-          const newLocation = join('pages', parse(i.location).dir, parse(i.location).name + '.html', )
-          // now define the final destination where the file will go on the machine
-          const destination = join(process.cwd(), flags.destination, newLocation)
-          // create the file
-          outputFileSync(destination, html)
-          // update the outline
-          return Object.assign({}, i, { location: newLocation })
-        }
+      // run our magic batch process
+      outline.items = await batchConvertOutline({
+        // items: outline.items.slice(0,4),
+        items: outline.items,
+        destination: flags.destination,
+        gitbookLocation
       })
       // save it to site.json
       const siteJsonLocation = join(process.cwd(), flags.destination, 'site.json')
@@ -50,6 +43,54 @@ class RunCommand extends Command {
       // update site.json
       outputFileSync(siteJsonLocation, JSON.stringify(outline, null, 4))
     }
+  }
+}
+
+const batchConvertOutline = ({ items, gitbookLocation, destination }) => {
+  return new Promise((resolve, reject) => {
+    progressBar.start(items.length, 0)
+    items.forEach(i => {
+      batch.push(async (done) => {
+        convertOutlineItem({ item: i, destination, gitbookLocation }, done)
+      })
+    })
+
+    batch.on('progress', e => {
+      progressBar.update(e.complete);
+    })
+    batch.end((err, items) => {
+      progressBar.stop()
+      if (err) reject(err)
+      resolve(items)
+    })
+  })
+}
+
+/**
+ * Converts an gitbook outline item into haxcms
+ */
+const convertOutlineItem = async ({ item, gitbookLocation, destination }, done) => {
+  const path = join(gitbookLocation, item.location)
+  if (pathExistsSync(path)) {
+    // get file contents
+    const fileContents = readFileSync(path, 'utf8')
+    // convert from markdown to html
+    let html = markdown.toHTML(fileContents)
+
+    /**
+     * @todo
+     * allow middleware to alter page
+     */
+    html = await elmslnConverter(html, destination)
+
+    // define what the new location path should be and switch the extention to .html
+    const newLocation = join('pages', parse(item.location).dir, parse(item.location).name + '.html')
+    // now define the final destination where the file will go on the machine
+    const absoluteDestination = join(process.cwd(), destination, newLocation)
+    // create the file
+    outputFileSync(absoluteDestination, html)
+    // update the outline
+    done(null, Object.assign({}, item, { location: newLocation }))
   }
 }
 

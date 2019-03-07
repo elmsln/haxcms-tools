@@ -1,6 +1,5 @@
 const { writeFileSync, ensureDirSync } = require('fs-extra')
 const { join, basename } = require('path')
-var { flatMap } = require('lodash');
 const puppeteer = require('puppeteer')
 
 const ELMS_MEDIA_SERVER_URL = 'https://media.ed.science.psu.edu'
@@ -14,6 +13,20 @@ module.exports = async (html, destination) => {
   while ((match = ptrn.exec(html)) != null) {
     tokensFound.push(match)
   }
+
+  // remove <em> from tokens
+  tokensFound.forEach(tokenMatch => {
+    // get the raw token found
+    const token = tokenMatch[0]
+    if (token.includes('<em>')) {
+      token.replace('<em>', '_')
+    }
+    if (token.includes('</em>')) {
+      token.replace('</em>', '_')
+    }
+    convertedHTML = convertedHTML.replace(tokenMatch[0], token)
+  })
+
   // make an array that is just the tokens found
   const tokensContents = tokensFound
     // get the inside of the token
@@ -55,7 +68,10 @@ module.exports = async (html, destination) => {
   for (let i in tokensFound) {
     const oldValue = tokensFound[i][0]
     const newValue = tokensContents[i].newValue
-    convertedHTML = convertedHTML.replace(oldValue, unescape(newValue))
+    // if we have a new value then replace it
+    if (typeof newValue !== 'undefined') {
+      convertedHTML = convertedHTML.replace(oldValue, unescape(newValue))
+    }
   }
 
   return convertedHTML
@@ -73,8 +89,8 @@ const imagesScrape = async (nid, destination) => {
   // update the remote img tag and capture the output
   // first we will alter the image url to fit the destination
   const updatedImageUrl = join('assets', basename(imageUrl))
-  const newHTML = await page.evaluate((imageUrl) => {
-    document.querySelector('.main-section .field-name-field-image img').setAttribute('src', imageUrl)
+  const newHTML = await page.evaluate((updatedImageUrl) => {
+    document.querySelector('.main-section .field-name-field-image img').setAttribute('src', updatedImageUrl)
     return document.querySelector('.main-section .field-name-field-image img').parentElement.innerHTML
   }, updatedImageUrl)
 
