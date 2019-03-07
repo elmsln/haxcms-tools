@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer')
 const ELMS_MEDIA_SERVER_URL = 'https://media.ed.science.psu.edu'
 
 module.exports = async (html, destination) => {
-  let convertedHTML = ''
+  let convertedHTML = html
   // regex for the tokens
   const ptrn = RegExp(/\[(.*)\]/g);
   let tokensFound = []
@@ -34,15 +34,28 @@ module.exports = async (html, destination) => {
       return obj
     })
 
-  for (let i of tokensContents) {
-    switch (i.display_mode) {
+  for (let i in tokensContents) {
+    switch (tokensContents[i].display_mode) {
       case 'image':
-        await imagesScrape(i.item, destination)
+        // get the images and the new html tags
+        let newValue = await imagesScrape(tokensContents[i].item, destination)
+        // make sure those tags are escaped
+        newValue = escape(newValue)
+        // save them back to the tokens object
+        tokensContents[i] = Object.assign({}, i, { newValue })
         break;
     
       default:
         break;
     }
+  }
+
+  // loop through the tokens and update them
+  // in the converted html
+  for (let i in tokensFound) {
+    const oldValue = tokensFound[i][0]
+    const newValue = tokensContents[i].newValue
+    convertedHTML = convertedHTML.replace(oldValue, unescape(newValue))
   }
 
   return convertedHTML
@@ -56,6 +69,15 @@ const imagesScrape = async (nid, destination) => {
   await page.goto(`${ELMS_MEDIA_SERVER_URL}/node/${nid}`)
   // grab the image src
   const imageUrl = await page.evaluate(() => document.querySelector('.main-section .field-name-field-image img').getAttribute('src'))
+
+  // update the remote img tag and capture the output
+  // first we will alter the image url to fit the destination
+  const updatedImageUrl = join('assets', basename(imageUrl))
+  const newHTML = await page.evaluate((imageUrl) => {
+    document.querySelector('.main-section .field-name-field-image img').setAttribute('src', imageUrl)
+    return document.querySelector('.main-section .field-name-field-image img').parentElement.innerHTML
+  }, updatedImageUrl)
+
   // travel to the image page
   const imageSource = await page.goto(imageUrl);
   // save the image locally to assets
@@ -63,5 +85,6 @@ const imagesScrape = async (nid, destination) => {
   writeFileSync(join(destination, 'assets', basename(imageUrl)), await imageSource.buffer());
   // close the browser
   await browser.close()
-  return 'asdf'
+  // return the new HTML
+  return newHTML
 }
