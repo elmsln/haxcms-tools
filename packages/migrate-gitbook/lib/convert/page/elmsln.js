@@ -14,17 +14,30 @@ module.exports = async (html, destination) => {
     tokensFound.push(match)
   }
 
-  // remove <em> from tokens
-  tokensFound.forEach(tokenMatch => {
+  // remove html from tokens
+  tokensFound = tokensFound.map(tokenMatch => {
     // get the raw token found
-    const token = tokenMatch[0]
-    if (token.includes('<em>')) {
-      token.replace('<em>', '_')
+    let newTokenMatch = Object.assign({}, tokenMatch)
+    if (newTokenMatch[0].includes('<em>')) {
+      newTokenMatch[0] = newTokenMatch[0].replace('<em>', '_')
+      newTokenMatch[1] = newTokenMatch[1].replace('<em>', '_')
     }
-    if (token.includes('</em>')) {
-      token.replace('</em>', '_')
+    if (newTokenMatch[0].includes('</em>')) {
+      newTokenMatch[0] = newTokenMatch[0].replace('</em>', '_')
+      newTokenMatch[1] = newTokenMatch[1].replace('</em>', '_')
     }
-    convertedHTML = convertedHTML.replace(tokenMatch[0], token)
+    if (newTokenMatch[0].includes('<strong>')) {
+      newTokenMatch[0] = newTokenMatch[0].replace('<strong>', '__')
+      newTokenMatch[1] = newTokenMatch[1].replace('<strong>', '__')
+    }
+    if (newTokenMatch[0].includes('</strong>')) {
+      newTokenMatch[0] = newTokenMatch[0].replace('</strong>', '__')
+      newTokenMatch[1] = newTokenMatch[1].replace('</strong>', '__')
+    }
+    // update the convertedHTML document
+    convertedHTML = convertedHTML.replace(tokenMatch[0], newTokenMatch[0])
+    // return the new token match
+    return newTokenMatch
   })
 
   // make an array that is just the tokens found
@@ -48,18 +61,22 @@ module.exports = async (html, destination) => {
     })
 
   for (let i in tokensContents) {
-    switch (tokensContents[i].display_mode) {
-      case 'image':
-        // get the images and the new html tags
-        let newValue = await imagesScrape(tokensContents[i].item, destination)
+    const displayMode = tokensContents[i].display_mode 
+    if (displayMode) {
+      if (displayMode.includes('image')) {
+        let newValue = await imagesScrape(tokensContents[i], destination)
         // make sure those tags are escaped
         newValue = escape(newValue)
         // save them back to the tokens object
         tokensContents[i] = Object.assign({}, i, { newValue })
-        break;
-    
-      default:
-        break;
+      }
+      if (displayMode.includes('video')) {
+        let newValue = await videoScrape(tokensContents[i])
+        // make sure those tags are escaped
+        newValue = escape(newValue)
+        // save them back to the tokens object
+        tokensContents[i] = Object.assign({}, i, { newValue })
+      }
     }
   }
 
@@ -77,12 +94,20 @@ module.exports = async (html, destination) => {
   return convertedHTML
 }
 
-const imagesScrape = async (nid, destination) => {
+const videoScrape = async (item) => {
   // start up a browser and get all of the
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
-  // navigate to the node page
-  await page.goto(`${ELMS_MEDIA_SERVER_URL}/node/${nid}`)
+  await page.goto(`${ELMS_MEDIA_SERVER_URL}/node/${item.item}`)
+  const videoPlayerTag = await page.evaluate(() => document.querySelector('.main-section video-player').outerHTML)
+  return videoPlayerTag
+}
+
+const imagesScrape = async (item, destination) => {
+  // start up a browser and get all of the
+  const browser = await puppeteer.launch()
+  const page = await browser.newPage()
+  await page.goto(`${ELMS_MEDIA_SERVER_URL}/node/${item.item}`)
   // grab the image src
   const imageUrl = await page.evaluate(() => document.querySelector('.main-section .field-name-field-image img').getAttribute('src'))
 
@@ -90,7 +115,9 @@ const imagesScrape = async (nid, destination) => {
   // first we will alter the image url to fit the destination
   const updatedImageUrl = join('assets', basename(imageUrl))
   const newHTML = await page.evaluate((updatedImageUrl) => {
-    document.querySelector('.main-section .field-name-field-image img').setAttribute('src', updatedImageUrl)
+    document
+      .querySelector('.main-section .field-name-field-image img')
+      .setAttribute('src', updatedImageUrl)
     return document.querySelector('.main-section .field-name-field-image img').parentElement.innerHTML
   }, updatedImageUrl)
 
