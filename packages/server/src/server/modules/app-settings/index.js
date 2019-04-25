@@ -9,21 +9,22 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    appSettings: () => {
+    appSettings: async (_, __, context, info) => {
+      const endpoint = `${context.request.protocol}://${context.request.get('host')}${context.request.originalUrl}`
       return {
-        "login": "dist\/dev\/login.json",
-        "logout": "dist\/dev\/logout.json",
-        "saveNodePath": "dist\/dev\/saveNode.json",
-        "saveManifestPath": "dist\/dev\/saveManifestPath.json",
-        "createNodePath": "dist\/dev\/saveNode.json",
-        "deleteNodePath": "dist\/dev\/saveNode.json",
-        "saveOutlinePath": "dist\/dev\/saveNode.json",
-        "publishSitePath": "dist\/dev\/saveNode.json",
-        "getNodeFieldsPath": "dist\/dev\/getNodeFieldsPath.json",
-        "getSiteFieldsPath": "dist\/dev\/getSiteFieldsPath.json",
-        "getFieldsToken": "adskjadshjudfu823u823u8fu8fij",
+        "login": endpoint,
+        "logout": endpoint,
+        "saveNodePath": endpoint,
+        "saveManifestPath": endpoint,
+        "createNodePath": endpoint,
+        "deleteNodePath": endpoint,
+        "saveOutlinePath": endpoint,
+        "publishSitePath": endpoint,
+        "getNodeFieldsPath": endpoint,
+        "getSiteFieldsPath": endpoint,
+        "getFieldsToken": endpoint,
         "appStore": {
-          "url": "dist\/dev\/appstore.json"
+          "url": endpoint
         },
         // add your custom theme here if testing locally and wanting to emulate the theme selector
         // this isn't really nessecary though
