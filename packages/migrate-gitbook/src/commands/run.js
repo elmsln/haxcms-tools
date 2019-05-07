@@ -82,9 +82,13 @@ const convertOutlineItem = async ({ item, gitbookLocation, destination }, done) 
      * allow middleware to alter page
      */
     html = await elmslnConverter(html, destination)
+    /**
+     * Run middleware hook
+     */
+    html = await this.config.runHook('migrate-gitbook-process', html)
 
     // define what the new location path should be and switch the extention to .html
-    const newLocation = join('pages', parse(item.location).dir, parse(item.location).name + '.html')
+    const newLocation = join('pages', parse(item.location).dir, parse(item.location).name, 'index.html')
     // now define the final destination where the file will go on the machine
     const absoluteDestination = join(process.cwd(), destination, newLocation)
     // create the file

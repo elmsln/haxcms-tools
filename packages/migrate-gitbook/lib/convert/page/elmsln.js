@@ -5,6 +5,7 @@ const puppeteer = require('puppeteer')
 const ELMS_MEDIA_SERVER_URL = 'https://media.ed.science.psu.edu'
 
 module.exports = async (html, destination) => {
+
   let convertedHTML = html
   // regex for the tokens
   const ptrn = RegExp(/\[(.*)\]/g);
