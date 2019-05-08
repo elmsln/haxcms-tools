@@ -3,7 +3,6 @@ const { join, parse } = require('path')
 const { pathExistsSync, readFileSync, outputFileSync } = require('fs-extra')
 const parseGitbookOutline = require('@haxcms/gitbook-2-outline-schema')
 const markdown = require("markdown").markdown;
-const elmslnConverter = require('../../lib/convert/page/elmsln.js')
 const Batch = require('batch')
 const batch = new Batch
 batch.concurrency(1)
@@ -29,7 +28,8 @@ class RunCommand extends Command {
         // items: outline.items.slice(0,4),
         items: outline.items,
         destination: flags.destination,
-        gitbookLocation
+        gitbookLocation,
+        self: this
       })
       // save it to site.json
       const siteJsonLocation = join(process.cwd(), flags.destination, 'site.json')
@@ -46,12 +46,12 @@ class RunCommand extends Command {
   }
 }
 
-const batchConvertOutline = ({ items, gitbookLocation, destination }) => {
+const batchConvertOutline = ({ items, gitbookLocation, destination, self }) => {
   return new Promise((resolve, reject) => {
     progressBar.start(items.length, 0)
     items.forEach(i => {
       batch.push(async (done) => {
-        convertOutlineItem({ item: i, destination, gitbookLocation }, done)
+        convertOutlineItem({ item: i, destination, gitbookLocation, self }, done)
       })
     })
 
@@ -69,23 +69,13 @@ const batchConvertOutline = ({ items, gitbookLocation, destination }) => {
 /**
  * Converts an gitbook outline item into haxcms
  */
-const convertOutlineItem = async ({ item, gitbookLocation, destination }, done) => {
+const convertOutlineItem = async ({ item, gitbookLocation, destination, self }, done) => {
   const path = join(gitbookLocation, item.location)
   if (pathExistsSync(path)) {
     // get file contents
     const fileContents = readFileSync(path, 'utf8')
     // convert from markdown to html
     let html = markdown.toHTML(fileContents)
-
-    /**
-     * @todo
-     * allow middleware to alter page
-     */
-    html = await elmslnConverter(html, destination)
-    /**
-     * Run middleware hook
-     */
-    html = await this.config.runHook('migrate-gitbook-process', html)
 
     // define what the new location path should be and switch the extention to .html
     const newLocation = join('pages', parse(item.location).dir, parse(item.location).name, 'index.html')
@@ -94,7 +84,12 @@ const convertOutlineItem = async ({ item, gitbookLocation, destination }, done) 
     // create the file
     outputFileSync(absoluteDestination, html)
     // update the outline
-    done(null, Object.assign({}, item, { location: newLocation }))
+    const newItem = Object.assign({}, item, { location: newLocation })
+    /**
+     * Hook run-convert-item-post
+     */
+    await self.config.runHook('run-convert-item-post', { html, item: newItem, absoluteDestination })
+    done(null, newItem)
   }
 }
 

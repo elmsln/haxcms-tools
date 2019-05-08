@@ -1,17 +1,22 @@
 {
-  "name": "@haxcms/migrate-gitbook-lrn-math",
-  "description": "An lrn-math plugin for migrate-gitbook.",
+  "name": "@haxcms/migrate-elmsln",
+  "description": "Migrate ELMSLN content to HAXcms.",
   "version": "0.0.0",
   "author": "heyMP @heyMP",
-  "bugs": "https://github.com/@haxcms/migrate-gitbook-lrn-math/issues",
+  "bin": {
+    "migrate-elmsln": "./bin/run"
+  },
+  "bugs": "https://github.com/elmsln/haxcms-tools/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
-    "@oclif/plugin-plugins": "^1"
+    "@oclif/plugin-help": "^2",
+    "cli-progress": "^2.1.1",
+    "batch": "^0.6.1",
+    "fs-extra": "^7.0.1"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
-    "@oclif/plugin-help": "^2",
     "@oclif/test": "^1",
     "chai": "^4",
     "eslint": "^5.13",
@@ -24,25 +29,25 @@
     "node": ">=8.0.0"
   },
   "files": [
+    "/bin",
     "/npm-shrinkwrap.json",
     "/oclif.manifest.json",
-    "/src",
-    "/yarn.lock"
+    "/src"
   ],
-  "homepage": "https://github.com/@haxcms/migrate-gitbook-lrn-math",
+  "homepage": "https://github.com/elmsln/haxcms-tools",
   "keywords": [
-    "oclif-plugin"
+    "oclif"
   ],
   "license": "Apache 2.0",
+  "main": "src/index.js",
   "oclif": {
-    "devPlugins": [
+    "commands": "./src/commands",
+    "bin": "migrate-elmsln",
+    "plugins": [
       "@oclif/plugin-help"
-    ],
-    "hooks": {
-      "migrate-gitbook-process": "./src/hooks/migrate-gitbook-process/post"
-    }
+    ]
   },
-  "repository": "@haxcms/migrate-gitbook-lrn-math",
+  "repository": "elmsln/haxcms-tools",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint .",

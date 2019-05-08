@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer')
 
 const ELMS_MEDIA_SERVER_URL = 'https://media.ed.science.psu.edu'
 
-module.exports = async (html, destination) => {
+module.exports = async ({ html, destination, mediaServerUrl, download }) => {
 
   let convertedHTML = html
   // regex for the tokens
@@ -14,6 +14,7 @@ module.exports = async (html, destination) => {
   while ((match = ptrn.exec(html)) != null) {
     tokensFound.push(match)
   }
+
 
   // remove html from tokens
   tokensFound = tokensFound.map(tokenMatch => {
@@ -61,22 +62,25 @@ module.exports = async (html, destination) => {
       return obj
     })
 
-  for (let i in tokensContents) {
-    const displayMode = tokensContents[i].display_mode 
-    if (displayMode) {
-      if (displayMode.includes('image')) {
-        let newValue = await imagesScrape(tokensContents[i], destination)
-        // make sure those tags are escaped
-        newValue = escape(newValue)
-        // save them back to the tokens object
-        tokensContents[i] = Object.assign({}, i, { newValue })
-      }
-      if (displayMode.includes('video')) {
-        let newValue = await videoScrape(tokensContents[i])
-        // make sure those tags are escaped
-        newValue = escape(newValue)
-        // save them back to the tokens object
-        tokensContents[i] = Object.assign({}, i, { newValue })
+  // if the download option is set then lets scrap some assests
+  if (download) {
+    for (let i in tokensContents) {
+      const displayMode = tokensContents[i].display_mode 
+      if (displayMode) {
+        if (displayMode.includes('image')) {
+          let newValue = await imagesScrape(tokensContents[i], destination, mediaServerUrl)
+          // make sure those tags are escaped
+          newValue = escape(newValue)
+          // save them back to the tokens object
+          tokensContents[i] = Object.assign({}, i, { newValue })
+        }
+        if (displayMode.includes('video')) {
+          let newValue = await videoScrape(tokensContents[i], mediaServerUrl)
+          // make sure those tags are escaped
+          newValue = escape(newValue)
+          // save them back to the tokens object
+          tokensContents[i] = Object.assign({}, i, { newValue })
+        }
       }
     }
   }
@@ -95,20 +99,20 @@ module.exports = async (html, destination) => {
   return convertedHTML
 }
 
-const videoScrape = async (item) => {
+const videoScrape = async (item, mediaServerUrl) => {
   // start up a browser and get all of the
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
-  await page.goto(`${ELMS_MEDIA_SERVER_URL}/node/${item.item}`)
+  await page.goto(`${mediaServerUrl}/node/${item.item}`)
   const videoPlayerTag = await page.evaluate(() => document.querySelector('.main-section video-player').outerHTML)
   return videoPlayerTag
 }
 
-const imagesScrape = async (item, destination) => {
+const imagesScrape = async (item, destination, mediaServerUrl) => {
   // start up a browser and get all of the
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
-  await page.goto(`${ELMS_MEDIA_SERVER_URL}/node/${item.item}`)
+  await page.goto(`${mediaServerUrl}/node/${item.item}`)
   // grab the image src
   const imageUrl = await page.evaluate(() => document.querySelector('.main-section .field-name-field-image img').getAttribute('src'))
 

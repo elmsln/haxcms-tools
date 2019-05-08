@@ -59,7 +59,10 @@
     "plugins": [
       "@oclif/plugin-help",
       "@oclif/plugin-plugins"
-    ]
+    ],
+    "hooks": {
+      "run-convert-item-post": "./src/hooks/run-convert-item-post/example"
+    }
   },
   "publishConfig": {
     "access": "public"
