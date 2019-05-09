@@ -1,18 +1,7 @@
 @haxcms/migrate-regex
 =====================
 
-Search and replace regex patterns in a HAXcms site.
-
-[![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/@haxcms/migrate-regex.svg)](https://npmjs.org/package/@haxcms/migrate-regex)
-[![Downloads/week](https://img.shields.io/npm/dw/@haxcms/migrate-regex.svg)](https://npmjs.org/package/@haxcms/migrate-regex)
-[![License](https://img.shields.io/npm/l/@haxcms/migrate-regex.svg)](https://github.com/elmsln/haxcms-tools/blob/master/package.json)
-
-<!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
-# Usage
+# Install
 <!-- usage -->
 ```sh-session
 $ npm install -g @haxcms/migrate-regex
@@ -25,44 +14,45 @@ USAGE
   $ migrate-regex COMMAND
 ...
 ```
-<!-- usagestop -->
-# Commands
-<!-- commands -->
-* [`migrate-regex hello`](#migrate-regex-hello)
-* [`migrate-regex help [COMMAND]`](#migrate-regex-help-command)
 
-## `migrate-regex hello`
+# Usage
 
-Describe the command here
+## Define patterns and replacements
 
-```
-USAGE
-  $ migrate-regex hello
+In your HAXcms site, create a file called `migrate.json`.  By default `migrate-regex` will assume this file is a sibling of `site.json`.
 
-OPTIONS
-  -n, --name=name  name to print
+Define your patterns in the `regex` property. Example:
 
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/hello.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.0/src/commands/hello.js)_
-
-## `migrate-regex help [COMMAND]`
-
-display help for migrate-regex
-
-```
-USAGE
-  $ migrate-regex help [COMMAND]
-
-ARGUMENTS
-  COMMAND  command to show help for
-
-OPTIONS
-  --all  see all commands in CLI
+```json
+{
+  "regex": [
+    {
+      "pattern": "&lt;",
+      "replacement": "<"
+    },
+    {
+      "pattern": "&gt;",
+      "replacement": ">"
+    },
+    {
+      "pattern": "&quot;",
+      "replacement": "\""
+    },
+    {
+      "pattern": "(\\$\\$(?:(?!\\$\\$)[\\s\\S])*?)(<\/?em>)([\\s\\S]*?\\$\\$)",
+      "replacement": "$1_$3"
+    },
+    {
+      "pattern": "(\\$\\$)([^\\$\\$]*)(\\$\\$)",
+      "replacement": "<lrn-math>$2</lrn-math>"
+    }
+  ]
+}
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
-<!-- commandsstop -->
+## Run regex migration
+
+```sh-sessionh
+$ migrate-regex run -j site.json
+```
+
