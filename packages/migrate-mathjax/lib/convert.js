@@ -4,8 +4,9 @@ const fs = require('fs-extra')
  * Convert legacy mathjax to lrn-math web component
  * @param {string} html
  * @param {string} destination
+ * @return 
  */
-module.exports = function ({ html, destination }) {
+module.exports = function ({ html }) {
   // convert the html
   const newHTML = convert(html)
   // write the new html back to the file
