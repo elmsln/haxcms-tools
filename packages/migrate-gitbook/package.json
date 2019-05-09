@@ -17,11 +17,10 @@
     "@oclif/plugin-plugins": "^1.7.7",
     "fs-extra": "^7.0.1",
     "hooks": "^0.3.2",
-    "markdown": "^0.5.0",
     "@desertnet/scanner": "^1.1.1",
-    "puppeteer": "^1.13.0",
     "batch": "^0.6.1",
-    "cli-progress": "^2.1.1"
+    "cli-progress": "^2.1.1",
+    "markdown-it": "^8.4.2"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",

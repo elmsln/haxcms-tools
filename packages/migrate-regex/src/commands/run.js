@@ -76,7 +76,6 @@ const convertOutlineItem = ({ item, patterns, jos, self }, done) => {
       html,
       patterns
     })
-    console.log('convertedHTML:', convertedHTML)
     // write it back to the file
     fs.writeFileSync(path.join(path.dirname(jos), item.location), convertedHTML, 'utf8')
     done(null)

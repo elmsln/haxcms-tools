@@ -2,7 +2,7 @@ const { Command, flags } = require('@oclif/command')
 const { join, parse } = require('path')
 const { pathExistsSync, readFileSync, outputFileSync } = require('fs-extra')
 const parseGitbookOutline = require('@haxcms/gitbook-2-outline-schema')
-const markdown = require("markdown").markdown;
+const md = require('markdown-it')();
 const Batch = require('batch')
 const batch = new Batch
 batch.concurrency(1)
@@ -25,7 +25,6 @@ class RunCommand extends Command {
     if (outline.items && outline.items.length > 0) {
       // run our magic batch process
       outline.items = await batchConvertOutline({
-        // items: outline.items.slice(0,4),
         items: outline.items,
         destination: flags.destination,
         gitbookLocation,
@@ -74,8 +73,9 @@ const convertOutlineItem = async ({ item, gitbookLocation, destination, self }, 
   if (pathExistsSync(path)) {
     // get file contents
     const fileContents = readFileSync(path, 'utf8')
+
     // convert from markdown to html
-    let html = markdown.toHTML(fileContents)
+    let html = md.render(fileContents)
 
     // define what the new location path should be and switch the extention to .html
     const newLocation = join('pages', parse(item.location).dir, parse(item.location).name, 'index.html')
