@@ -1,10 +1,10 @@
 {
-  "name": "@haxcms/drupal-book-2-jos",
+  "name": "@haxcms/migrate-drupal",
   "description": "Convert a Drupal Book XML export to JSON Outline Schema.",
   "version": "0.0.0",
   "author": "heyMP @heyMP",
   "bin": {
-    "drupal-book-2-jos": "./bin/run"
+    "migrate-drupal": "./bin/run"
   },
   "bugs": "https://github.com/elmsln/haxcms-tools/issues",
   "dependencies": {
@@ -42,7 +42,7 @@
   "main": "src/index.js",
   "oclif": {
     "commands": "./src/commands",
-    "bin": "drupal-book-2-jos",
+    "bin": "migrate-drupal",
     "plugins": [
       "@oclif/plugin-help"
     ]
