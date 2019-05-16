@@ -1,7 +1,9 @@
 const fs = require('fs-extra')
 const path = require('path')
 const parseString = require('xml2js').parseString;
+const moment = require('moment')
 const _ = require('lodash');
+const HAXgetLocation = require('@haxcms/sdk').getLocation
 
 /**
  * Converts an xml document to HAXcms
@@ -18,10 +20,11 @@ const convert = async (xml, dest) => {
   // loop over the items and convert the body field to a file
   jos.items = jos.items.map(item => {
     try {
-      const location = path.join(dest, 'pages', item.id, 'index.html')
-      fs.ensureDirSync(path.dirname(location))
+      // make a new location
+      const location = HAXgetLocation(item.id, jos)
+      const locationAbsolute = path.join(dest, location)
+      fs.ensureDirSync(path.dirname(locationAbsolute))
       fs.writeFileSync(location, item.body, 'utf8')
-      const _item = Object.assign({}, item, { location })
       delete _item['body']
       return _item
     } catch (error) {
@@ -37,7 +40,7 @@ const convert = async (xml, dest) => {
   } catch (error) {}
   // merge the two jos
   const newJOS = Object.assign({}, siteJOS, { items: jos.items })
-  return fs.writeJSONSync(path.join(dest, 'site.json'), newJOS)
+  return fs.writeFileSync(path.join(dest, 'site.json'), JSON.stringify(newJOS, null, 4))
 }
 
 // get the xml file to JOS
@@ -60,17 +63,30 @@ const convertJOS = async (xml) => {
       // move uuid to id
       _i['id'] = _i['uuid']
       delete _i['uuid']
+      // ensure parent is null if empty
+      if (_i['parent'] === '') {
+        _i['parent'] = null
+      }
       // move weight to order
-      _i['order'] = _i['weight']
+      _i['order'] = Number(_i['weight'])
       delete _i['weight']
-      // move uuid to id
       _i['body'] = _i['body'] || ''
       // add indent
-      _i['indent'] = _i['indent'] || 0
+      _i['indent'] = Number(_i['indent']) || 0
       // add metadata
       _i['description'] = _i['description'] || ''
       // add metadata
       _i['metadata'] = _i['metadata'] || {}
+      // add metadata
+      _i['metadata']['created'] = _i['created'] || new Date().getTime()
+      delete _i['created']
+      _i['metadata']['updated'] = _i['updated'] || new Date().getTime()
+      delete _i['updated']
+      // move uid
+      if (typeof _i['uid'] !== 'undefined') {
+        _i['metadata']['uid'] = _i['uid']
+        delete _i['uid']
+      }
       // return the new item
       return _i
     })
