@@ -22,11 +22,13 @@ const convert = async (xml, dest) => {
     try {
       // make a new location
       const location = HAXgetLocation(item.id, jos)
+      // save location to the item
+      item['location'] = location
       const locationAbsolute = path.join(dest, location)
       fs.ensureDirSync(path.dirname(locationAbsolute))
       fs.writeFileSync(location, item.body, 'utf8')
-      delete _item['body']
-      return _item
+      delete item['body']
+      return item
     } catch (error) {
       throw error
     }
