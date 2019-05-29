@@ -69,28 +69,28 @@ const batchConvertOutline = ({ items, gitbookLocation, destination, self }) => {
  * Converts an gitbook outline item into haxcms
  */
 const convertOutlineItem = async ({ item, gitbookLocation, destination, self }, done) => {
-  const path = join(gitbookLocation, item.location)
-  if (pathExistsSync(path)) {
-    // get file contents
-    const fileContents = readFileSync(path, 'utf8')
-
+  let newItem = Object.assign({}, item)
+  let absoluteDestination = undefined
+  let html = ''
+  if (item.location) {
+    const path = join(gitbookLocation, item.location);
+    // get the file contents
+    const fileContents = pathExistsSync(path) ? readFileSync(path, 'utf8') : ''
     // convert from markdown to html
-    let html = md.render(fileContents)
-
+    html = md.render(fileContents)
     // define what the new location path should be and switch the extention to .html
     const newLocation = join('pages', parse(item.location).dir, parse(item.location).name, 'index.html')
     // now define the final destination where the file will go on the machine
-    const absoluteDestination = join(process.cwd(), destination, newLocation)
+    absoluteDestination = join(process.cwd(), destination, newLocation)
     // create the file
     outputFileSync(absoluteDestination, html)
-    // update the outline
-    const newItem = Object.assign({}, item, { location: newLocation })
-    /**
-     * Hook run-convert-item-post
-     */
-    await self.config.runHook('run-convert-item-post', { html, item: newItem, absoluteDestination })
-    done(null, newItem)
+    newItem = Object.assign({}, item, { location: newLocation })
   }
+  /**
+   * Hook run-convert-item-post
+   */
+  await self.config.runHook('run-convert-item-post', { html, item: newItem, absoluteDestination })
+  done(null, newItem)
 }
 
 RunCommand.description = `Describe the command here`
