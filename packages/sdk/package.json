@@ -1,6 +1,6 @@
 {
   "name": "@haxcms/sdk",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "SDK for working with HAXcms.",
   "author": "heyMP <mgp140@gmail.com>",
   "homepage": "https://github.com/elmsln/haxcms-tools#readme",
@@ -27,8 +27,8 @@
     "url": "https://github.com/elmsln/haxcms-tools/issues"
   },
   "dependencies": {
-    "lodash": "^4.17.11",
     "case": "^1.6.1",
+    "lodash": "^4.17.11",
     "unique-filename": "^1.1.1"
   }
 }

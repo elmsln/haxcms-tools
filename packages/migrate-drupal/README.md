@@ -15,47 +15,29 @@ Convert a Drupal Book XML export to JSON Outline Schema.
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g @haxcms/drupal-book-2-jos
-$ drupal-book-2-jos COMMAND
+$ npm install -g @haxcms/migrate-drupal
+$ migrate-drupal COMMAND
 running command...
-$ drupal-book-2-jos (-v|--version|version)
-@haxcms/drupal-book-2-jos/0.0.0 darwin-x64 node-v10.12.0
-$ drupal-book-2-jos --help [COMMAND]
+$ migrate-drupal (-v|--version|version)
+@haxcms/migrate-drupal/0.0.1 darwin-x64 node-v10.12.0
+$ migrate-drupal --help [COMMAND]
 USAGE
-  $ drupal-book-2-jos COMMAND
+  $ migrate-drupal COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`drupal-book-2-jos hello`](#drupal-book-2-jos-hello)
-* [`drupal-book-2-jos help [COMMAND]`](#drupal-book-2-jos-help-command)
+* [`migrate-drupal help [COMMAND]`](#migrate-drupal-help-command)
+* [`migrate-drupal run`](#migrate-drupal-run)
 
-## `drupal-book-2-jos hello`
+## `migrate-drupal help [COMMAND]`
 
-Describe the command here
-
-```
-USAGE
-  $ drupal-book-2-jos hello
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/hello.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.0/src/commands/hello.js)_
-
-## `drupal-book-2-jos help [COMMAND]`
-
-display help for drupal-book-2-jos
+display help for migrate-drupal
 
 ```
 USAGE
-  $ drupal-book-2-jos help [COMMAND]
+  $ migrate-drupal help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
@@ -65,4 +47,19 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
+
+## `migrate-drupal run`
+
+Convert a Drupal Book XML export to JSON Outline Schema.
+
+```
+USAGE
+  $ migrate-drupal run
+
+OPTIONS
+  -d, --dest=dest  [default: ./] Destination of the JOS location.
+  -s, --src=src    (required) Source of the drupal book xml file.
+```
+
+_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.1/src/commands/run.js)_
 <!-- commandsstop -->

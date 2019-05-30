@@ -15,11 +15,11 @@ Node server for HAXcms sites.
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g @hax-tools/server
+$ npm install -g @haxcms/server
 $ hax-server COMMAND
 running command...
 $ hax-server (-v|--version|version)
-@hax-tools/server/0.0.0 darwin-x64 node-v10.12.0
+@haxcms/server/0.0.1 darwin-x64 node-v10.12.0
 $ hax-server --help [COMMAND]
 USAGE
   $ hax-server COMMAND
@@ -28,26 +28,8 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`hax-server hello`](#hax-server-hello)
 * [`hax-server help [COMMAND]`](#hax-server-help-command)
-
-## `hax-server hello`
-
-Describe the command here
-
-```
-USAGE
-  $ hax-server hello
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/hello.js](https://github.com/elmsln/hax-tools/blob/v0.0.0/src/commands/hello.js)_
+* [`hax-server start`](#hax-server-start)
 
 ## `hax-server help [COMMAND]`
 
@@ -65,4 +47,19 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
+
+## `hax-server start`
+
+Start the server.
+
+```
+USAGE
+  $ hax-server start
+
+OPTIONS
+  -f, --frontend  start frontend server
+  -s, --server    start backend server
+```
+
+_See code: [src/commands/start.js](https://github.com/elmsln/hax-tools/blob/v0.0.1/src/commands/start.js)_
 <!-- commandsstop -->

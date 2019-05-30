@@ -8,6 +8,18 @@ $ npm install -g @haxcms/migrate-regex
 $ migrate-regex COMMAND
 running command...
 $ migrate-regex (-v|--version|version)
+@haxcms/migrate-regex/0.0.1 darwin-x64 node-v10.12.0
+$ migrate-regex --help [COMMAND]
+USAGE
+  $ migrate-regex COMMAND
+...
+```
+<!-- usagestop -->
+```sh-session
+$ npm install -g @haxcms/migrate-regex
+$ migrate-regex COMMAND
+running command...
+$ migrate-regex (-v|--version|version)
 @haxcms/migrate-regex/0.0.0 darwin-x64 node-v10.12.0
 $ migrate-regex --help [COMMAND]
 USAGE
@@ -55,4 +67,3 @@ Define your patterns in the `regex` property. Example:
 ```sh-sessionh
 $ migrate-regex run -j site.json
 ```
-

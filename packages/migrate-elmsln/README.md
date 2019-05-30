@@ -19,7 +19,7 @@ $ npm install -g @haxcms/migrate-elmsln
 $ migrate-elmsln COMMAND
 running command...
 $ migrate-elmsln (-v|--version|version)
-@haxcms/migrate-elmsln/0.0.0 darwin-x64 node-v10.12.0
+@haxcms/migrate-elmsln/0.0.1 darwin-x64 node-v10.12.0
 $ migrate-elmsln --help [COMMAND]
 USAGE
   $ migrate-elmsln COMMAND
@@ -28,26 +28,8 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`migrate-elmsln hello`](#migrate-elmsln-hello)
 * [`migrate-elmsln help [COMMAND]`](#migrate-elmsln-help-command)
-
-## `migrate-elmsln hello`
-
-Describe the command here
-
-```
-USAGE
-  $ migrate-elmsln hello
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/hello.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.0/src/commands/hello.js)_
+* [`migrate-elmsln run`](#migrate-elmsln-run)
 
 ## `migrate-elmsln help [COMMAND]`
 
@@ -65,4 +47,24 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
+
+## `migrate-elmsln run`
+
+Convert ELMSLN content to HAXcms.
+
+```
+USAGE
+  $ migrate-elmsln run
+
+OPTIONS
+  -h, --help          show CLI help
+  -i, --images        convert images defined in img tags to local assets.
+  -j, --jos=jos       (required) location of site.json file.
+  -s, --skipDownload  skip downloading assets using puppeteer.
+  -t, --tokens        convert tokens defined in img tags to local assets.
+  -u, --url=url       url of the ELMS site that contains the assets.
+  -v, --version       show CLI version
+```
+
+_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.1/src/commands/run.js)_
 <!-- commandsstop -->

@@ -19,7 +19,7 @@ $ npm install -g @haxcms/migrate-gitbook
 $ migrate-gitbook COMMAND
 running command...
 $ migrate-gitbook (-v|--version|version)
-@haxcms/migrate-gitbook/0.0.0 darwin-x64 node-v8.12.0
+@haxcms/migrate-gitbook/0.0.1 darwin-x64 node-v10.12.0
 $ migrate-gitbook --help [COMMAND]
 USAGE
   $ migrate-gitbook COMMAND
@@ -28,31 +28,13 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`migrate-gitbook hello`](#migrate-gitbook-hello)
 * [`migrate-gitbook help [COMMAND]`](#migrate-gitbook-help-command)
 * [`migrate-gitbook plugins`](#migrate-gitbook-plugins)
 * [`migrate-gitbook plugins:install PLUGIN...`](#migrate-gitbook-pluginsinstall-plugin)
 * [`migrate-gitbook plugins:link PLUGIN`](#migrate-gitbook-pluginslink-plugin)
 * [`migrate-gitbook plugins:uninstall PLUGIN...`](#migrate-gitbook-pluginsuninstall-plugin)
 * [`migrate-gitbook plugins:update`](#migrate-gitbook-pluginsupdate)
-
-## `migrate-gitbook hello`
-
-Describe the command here
-
-```
-USAGE
-  $ migrate-gitbook hello
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/hello.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.0/src/commands/hello.js)_
+* [`migrate-gitbook run SUMMARYFILE`](#migrate-gitbook-run-summaryfile)
 
 ## `migrate-gitbook help [COMMAND]`
 
@@ -187,4 +169,23 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/update.ts)_
+
+## `migrate-gitbook run SUMMARYFILE`
+
+Describe the command here
+
+```
+USAGE
+  $ migrate-gitbook run SUMMARYFILE
+
+ARGUMENTS
+  SUMMARYFILE  summary.md gitbook file
+
+OPTIONS
+  -d, --destination=destination  [default: ./] destination directory.
+  -h, --help                     show CLI help
+  -v, --version                  show CLI version
+```
+
+_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.1/src/commands/run.js)_
 <!-- commandsstop -->
