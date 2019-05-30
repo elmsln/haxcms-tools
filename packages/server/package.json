@@ -1,5 +1,5 @@
 {
-  "name": "@hax-tools/server",
+  "name": "@haxcms/server",
   "description": "Node server for HAXcms sites.",
   "version": "0.0.0",
   "author": "heyMP @heyMP",
