@@ -19,7 +19,7 @@ $ npm install -g @haxcms/migrate-elmsln
 $ migrate-elmsln COMMAND
 running command...
 $ migrate-elmsln (-v|--version|version)
-@haxcms/migrate-elmsln/0.0.2 darwin-x64 node-v10.12.0
+@haxcms/migrate-elmsln/0.0.3 darwin-x64 node-v10.12.0
 $ migrate-elmsln --help [COMMAND]
 USAGE
   $ migrate-elmsln COMMAND
@@ -66,5 +66,5 @@ OPTIONS
   -v, --version       show CLI version
 ```
 
-_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.2/src/commands/run.js)_
+_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.3/src/commands/run.js)_
 <!-- commandsstop -->

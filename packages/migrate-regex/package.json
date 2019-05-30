@@ -1,7 +1,7 @@
 {
   "name": "@haxcms/migrate-regex",
   "description": "Search and replace regex patterns in a HAXcms site.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "heyMP @heyMP",
   "bin": {
     "migrate-regex": "./bin/run"

@@ -1,7 +1,7 @@
 {
   "name": "@haxcms/fix-folder-structure",
   "description": "> TODO: description",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "heyMP <mgp140@gmail.com>",
   "bin": {
     "haxcms-fix-folder-structure": "./bin/run"
