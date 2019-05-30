@@ -30,5 +30,6 @@
     "case": "^1.6.1",
     "lodash": "^4.17.11",
     "unique-filename": "^1.1.1"
-  }
+  },
+  "gitHead": "f55bfc5a8d8093d35929eafb73d7b04609275877"
 }

@@ -49,6 +49,9 @@
       "@oclif/plugin-help"
     ]
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": "elmsln/haxcms-tools",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
@@ -56,5 +59,6 @@
     "prepack": "oclif-dev manifest && oclif-dev readme",
     "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
     "version": "oclif-dev readme && git add README.md"
-  }
+  },
+  "gitHead": "f55bfc5a8d8093d35929eafb73d7b04609275877"
 }

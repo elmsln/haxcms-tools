@@ -76,5 +76,6 @@
     "prepack": "oclif-dev manifest && oclif-dev readme && oclif-dev manifest && oclif-dev readme",
     "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
     "version": "oclif-dev readme && git add README.md"
-  }
+  },
+  "gitHead": "f55bfc5a8d8093d35929eafb73d7b04609275877"
 }
