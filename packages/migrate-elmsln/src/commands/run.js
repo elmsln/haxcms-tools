@@ -23,9 +23,9 @@ class RunCommand extends Command {
     }
 
     // if we are downloading assets then we need a url
-    if (flags.download === true) {
-      if (typeof flags.mediaServerUrl === 'undefined') {
-        throw new Error('media server url must be provided')
+    if (flags.skipDownload === true) {
+      if (typeof flags.url === 'undefined') {
+        throw new Error('url must be provided')
       }
     }
 
@@ -37,9 +37,13 @@ class RunCommand extends Command {
       outline.items = await batchConvertOutline({
         items: outline.items,
         destination: path.dirname(jos),
-        mediaServerUrl: flags.mediaServerUrl,
-        download: flags.download,
-        self: this
+        url: flags.url,
+        download: !flags.skipDownload,
+        self: this,
+        targets: {
+          tokens: flags.tokens,
+          images: flags.images
+        }
       })
     }
   }
@@ -70,12 +74,12 @@ const batchConvertOutline = (options) => {
 /**
  * Converts an gitbook outline item into haxcms
  */
-const convertOutlineItem = async ({ item, destination, mediaServerUrl, download, self }, done) => {
+const convertOutlineItem = async ({ item, destination, url, download, self, targets }, done) => {
   if (fs.pathExistsSync(item.location)) {
     // get file contents
     const fileContents = fs.readFileSync(item.location, 'utf8')
     // convert the item one at a time
-    const newHTML = await convert({ html: fileContents, destination, mediaServerUrl, download })
+    const newHTML = await convert({ html: fileContents, destination, url, download, targets })
     // save the file
     fs.writeFileSync(item.location, newHTML, 'utf8')
     done(null)
@@ -90,8 +94,10 @@ RunCommand.flags = {
   // add --help flag to show CLI version
   help: flags.help({ char: 'h' }),
   jos: flags.string({ char: 'j', description: 'location of site.json file.', required: true }),
-  mediaServerUrl: flags.string({ char: 'u', description: 'url of the open elmsln media server.', required: false }),
-  download: flags.boolean({ char: 'd', description: 'Download assets using puppeteer', required: false, default: false})
+  url: flags.string({ char: 'u', description: 'url of the ELMS site that contains the assets.', required: false }),
+  skipDownload: flags.boolean({ char: 's', description: 'skip downloading assets using puppeteer.', required: false, default: false}),
+  images: flags.boolean({ char: 'i', description: 'convert images defined in img tags to local assets.', required: false, default: false}),
+  tokens: flags.boolean({ char: 't', description: 'convert tokens defined in img tags to local assets.', required: false, default: false}),
 }
 
 module.exports = RunCommand

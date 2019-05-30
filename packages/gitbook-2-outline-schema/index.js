@@ -12,7 +12,6 @@ const parseOutline = (outlinePath) => {
   const md = fs.readFileSync(outlinePath, 'utf8');
   const html = converter.render(md);
   $ = cheerio.load(html);
-  console.log($.html())
   // add uuids to each item that doesn't have one.
   const uuidsAdded = addUuids();
   const locationAdded = addLocation();
@@ -31,14 +30,13 @@ assembleTree = (parent) => {
     const title = $(el).children('a').text() || $(el).clone().children().remove().end().text();
     let location = $(el).attr('data-location') || undefined;
     // if we don't have a defined location then make one based on the parent
-    if (typeof location === 'undefined' || location === undefined || !location) {
-      const parentLocation = $(parentEl).attr('data-location') || ''
-      location = path.join(path.parse(parentLocation).dir, path.parse(parentLocation).name, `${Case.kebab(title)}.md`)
+    if (typeof location === 'undefined' || location === undefined || location === '' || !location) {
+      location = `${randomstring.generate()}.md`
       // store in the
       $(el).attr('data-location', location)
     }
     const id = $(el).attr('id');
-    let item = Object.assign({}, { id, title, location, parent: parentID, order: index });
+    let item = Object.assign({}, { id, title, location, parent: parentID, order: index, metadata: {} });
     // if we have a location then add it
     item = Object.assign({}, item, { location })
     tree.push(item);
