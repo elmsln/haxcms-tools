@@ -1,12 +1,12 @@
 const {Command, flags} = require('@oclif/command')
 var yeoman = require('yeoman-environment')
 var env = yeoman.createEnv()
-env.register(require.resolve('../../generators/app'), 'app')
+env.register(require.resolve('../../generators/app'), 'init')
 
 class InitCommand extends Command {
   async run() {
     const {flags} = this.parse(InitCommand)
-    env.run('app', flags)
+    env.run('init', flags)
   }
 }
 
