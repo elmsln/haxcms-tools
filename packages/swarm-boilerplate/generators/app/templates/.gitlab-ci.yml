@@ -1,0 +1,21 @@
+image: tiangolo/docker-with-compose
+
+stages:
+  - build
+  - deploy
+
+build-prod:
+  stage: build
+  script:
+    - docker-compose build
+  only:
+    - master
+
+deploy-prod:
+  stage: deploy
+  script:
+    - pwd
+    - ls -la
+    - docker stack deploy -c docker-compose.yml --resolve-image always <%= name %>
+  only:
+    - master

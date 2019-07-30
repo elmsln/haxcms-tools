@@ -1,0 +1,44 @@
+{
+  "regex": [
+    {
+      "pattern": "&lt;",
+      "replacement": "<"
+    },
+    {
+      "pattern": "&gt;",
+      "replacement": ">"
+    },
+    {
+      "pattern": "&quot;",
+      "replacement": "\""
+    },
+    {
+      "pattern": "<img ([\\s\\S][^>]*)>",
+      "replacement": "<media-image $1></media-image>"
+    },
+    {
+      "pattern": "(<media-image[^>]*)src([^>]*)",
+      "replacement": "$1source$2"
+    },
+    {
+      "pattern": "(<media-image[^>]* )style([^>]*)",
+      "replacement": "$1data-style$2"
+    },
+    {
+      "pattern": "<p>(<media-image.*?<\/media-image>)<\/p>",
+      "replacement": "$1"
+    },
+    {
+      "pattern": "<p><a.*?(<media-image.*?<\/media-image>)</a><\/p>",
+      "replacement": "$1"
+    },
+    {
+      "pattern": "<video-player.*?(source=\"(.*?)(v=)(.*?)\").*?<\/video-player>",
+      "replacement":  "<iframe width=\"100%\" height=\"600px\" src=\"https:\/\/www.youtube.com\/embed\/$4\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen><\/iframe>"
+    },
+    {
+      "pattern": "\\[ciscode.*?item=(0|[1-9][0-9]*).*?display_mode=h5p.*?\\]",
+      "replacement":  "<iframe width=\"100%\" height=\"auto\" src=\"https://media.ed.science.psu.edu/entity_iframe/node/$1\" frameborder=\"0\" class=\"entity_iframe entity_iframe_node\" id=\"entity_iframe_node_2653\" allowfullscreen=\"true\" webkitallowfullscreen=\"true\" mozallowfullscreen=\"true\"></iframe>"
+    }
+  ]
+}
