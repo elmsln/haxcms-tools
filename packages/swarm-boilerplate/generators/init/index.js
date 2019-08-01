@@ -11,10 +11,14 @@ module.exports = class extends Generator {
    
     // transition into that directory
     this.fs.copyTpl(
+      this.templatePath('.gitlab-ci.yml'),
+      this.destinationPath('.gitlab-ci.yml'),
+      this.props
+    );
+    this.fs.copyTpl(
       this.templatePath('**/*'),
       this.destinationRoot(),
-      this.props,
-      { globOptions: { dot: true } }
+      this.props
     );
 
   }
