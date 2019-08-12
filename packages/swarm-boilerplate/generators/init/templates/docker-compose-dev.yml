@@ -4,15 +4,22 @@ services:
     image: traefik # The official Traefik docker image
     command: --api --docker # Enables the web UI and tells Traefik to listen to docker
     ports:
-      - "80:80"     # The HTTP port
+      - "<%= port %>:80"     # The HTTP port
       # - "8080:8080" # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
 
   edit:
-    image: eberlyodl/haxcms:next
+    image: elmsln/haxcms:latest
     volumes:
       - .:/var/www/html/_sites/<%= name %>
     labels:
       - "traefik.enable=true" # Enable reverse-proxy for this service
-      - "traefik.frontend.rule=Host:edit.<%= name %>.${HOST:-docker.localhost}"
+      - "traefik.frontend.rule=Host:<%= name %>.haxcms.localhost"
+
+  custom:
+    build:
+      context: ./custom
+    volumes:
+      - ./custom:/home/node/app
+      - /home/node/app/node_modules

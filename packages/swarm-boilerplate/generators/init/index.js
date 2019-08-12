@@ -9,15 +9,34 @@ module.exports = class extends Generator {
   writing() {
     this.props = this.answers
    
-    // transition into that directory
     this.fs.copyTpl(
       this.templatePath('.gitlab-ci.yml'),
       this.destinationPath('.gitlab-ci.yml'),
       this.props
     );
     this.fs.copyTpl(
-      this.templatePath('**/*'),
-      this.destinationRoot(),
+      this.templatePath('custom/Dockerfile'),
+      this.destinationPath('custom/Dockerfile'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('docker-compose-dev.yml'),
+      this.destinationPath('docker-compose-dev.yml'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('docker-compose.yml'),
+      this.destinationPath('docker-compose.yml'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('migrate.json'),
+      this.destinationPath('migrate.json'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('services/haxcms/apache2.conf'),
+      this.destinationPath('services/haxcms/apache2.conf'),
       this.props
     );
 

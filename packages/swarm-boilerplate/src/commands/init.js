@@ -14,6 +14,7 @@ InitCommand.description = `Describe the command here`
 
 InitCommand.flags = {
   name: flags.string({char: 'n', description: 'machine name of the HAXcms site.', required: true}),
+  port: flags.string({char: 'n', description: 'port of the traefik container', default: 80, required: true})
 }
 
 module.exports = InitCommand
