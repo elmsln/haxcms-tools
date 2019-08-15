@@ -4,15 +4,43 @@ stages:
   - build
   - deploy
 
-build-prod:
+build-heymp-swarm:
   stage: build
+  tags:
+    - heymp
   script:
     - docker-compose build
   only:
     - master
 
-deploy-prod:
+build-cod1-swarm:
+  stage: build
+  tags:
+    - cod1
+  script:
+    - docker-compose build
+  only:
+    - master
+
+deploy-heymp-swarm:
   stage: deploy
+  tags:
+    - heymp
+  variables:
+    HOST: "swarm.heymp.com"
+  script:
+    - pwd
+    - ls -la
+    - docker stack deploy -c docker-compose.yml --resolve-image always <%= name %>
+  only:
+    - master
+
+deploy-cod1-swarm:
+  stage: deploy
+  variables:
+    HOST: "cod1.vmhost.psu.edu"
+  tags:
+    - cod1
   script:
     - pwd
     - ls -la

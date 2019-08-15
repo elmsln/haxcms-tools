@@ -39,6 +39,11 @@ module.exports = class extends Generator {
       this.destinationPath('services/haxcms/apache2.conf'),
       this.props
     );
+    this.fs.copyTpl(
+      this.templatePath('dev.Dockerfile'),
+      this.destinationPath('dev.Dockerfile'),
+      this.props
+    );
 
   }
 

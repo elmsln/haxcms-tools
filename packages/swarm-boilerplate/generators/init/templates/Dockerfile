@@ -1,4 +1,4 @@
-FROM eberlyodl/haxcms:next as haxcms
+FROM elmsln/haxcms:latest as haxcms
 
 FROM php:7.3-apache
 

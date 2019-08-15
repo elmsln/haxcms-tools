@@ -12,16 +12,16 @@ services:
     networks:
       - traefik-public
     labels:
-      - "traefik.enabled=true"
+      - "traefik.enable=true"
       - "traefik.port=80"
       - "traefik.frontend.rule=Host:<%= name %>.${HOST:-docker.localhost}"
     deploy:
       labels:
-        - "traefik.enabled=true"
+        - "traefik.enable=true"
         - "traefik.port=80"
         - "traefik.docker.network=traefik-public"
         - "traefik.frontend.rule=Host:<%= name %>.${HOST:-docker.localhost}"
-        - "traefik.tag=traefik-public"
+        - "traefik.tags=traefik-public"
       replicas: 1
       update_config:
         order: start-first
