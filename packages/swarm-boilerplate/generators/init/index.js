@@ -44,7 +44,25 @@ module.exports = class extends Generator {
       this.destinationPath('dev.Dockerfile'),
       this.props
     );
-
+    this.fs.copyTpl(
+      this.templatePath('_config/.htaccess'),
+      this.destinationPath('_config/.htaccess'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('_config/config.json'),
+      this.destinationPath('_config/config.json'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('_config/config.php'),
+      this.destinationPath('_config/config.php'),
+      this.props
+    );
+    this.fs.copyTpl(
+      this.templatePath('_config/my-custom-elements.js'),
+      this.destinationPath('_config/my-custom-elements.js'),
+      this.props
+    );
   }
-
 };
