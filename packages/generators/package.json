@@ -1,10 +1,10 @@
 {
-  "name": "@haxcms/swarm-boilerplate",
+  "name": "@haxcms/generators",
   "description": "Boilerplate files for swarm deployment.",
   "version": "0.0.3",
   "author": "heyMP @heyMP",
   "bin": {
-    "swarm-boilerplate": "./bin/run"
+    "haxcms-generators": "./bin/run"
   },
   "bugs": "https://github.com/elmsln/haxcms-tools/issues",
   "dependencies": {
@@ -41,7 +41,7 @@
   "main": "src/index.js",
   "oclif": {
     "commands": "./src/commands",
-    "bin": "swarm-boilerplate",
+    "bin": "haxcms-generators",
     "plugins": [
       "@oclif/plugin-help"
     ]
