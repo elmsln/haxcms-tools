@@ -22,10 +22,9 @@ module.exports = class extends Generator {
     this.log(`
 Place the following html in your index.html. Preferably just after the legacy browser check. If you are unsure about this, paste it just above your closing </body> tag.
 
-<!-- @haxcms-generator/upgrade-browser
+// @haxcms-generator/upgrade-browser
 if (old) {
   window.location.href = "upgrade-browser.html";
-} @haxcms-generator/upgrade-browser -->
-      `)
+}`)
   }
 };

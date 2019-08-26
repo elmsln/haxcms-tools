@@ -10,7 +10,7 @@ build-heymp-swarm:
     - heymp
   script:
     # Cache busters
-    - sed -i -E "s/file=\"site\.json\"/file=\"site\.json\?v${CI_COMMIT_SHORT_SHA}\"/" index.htm
+    - sed -i -E "s/file=\"site\.json\"/file=\"site\.json\?v${CI_COMMIT_SHORT_SHA}\"/" index.html
     - docker-compose build
   only:
     - master
@@ -21,7 +21,7 @@ build-cod1-swarm:
     - cod1
   script:
     # Cache busters
-    - sed -i -E "s/file=\"site\.json\"/file=\"site\.json\?v${CI_COMMIT_SHORT_SHA}\"/" index.htm
+    - sed -i -E "s/file=\"site\.json\"/file=\"site\.json\?v${CI_COMMIT_SHORT_SHA}\"/" index.html
     - docker-compose build
   only:
     - master
@@ -42,7 +42,7 @@ deploy-heymp-swarm:
 deploy-cod1-swarm:
   stage: deploy
   variables:
-    HOST: "cod1.vmhost.psu.edu"
+    HOST: "courses.science.psu.edu"
   tags:
     - cod1
   script:
