@@ -40,8 +40,8 @@ module.exports = class extends Generator {
       this.props
     );
     this.fs.copyTpl(
-      this.templatePath('dev.Dockerfile'),
-      this.destinationPath('dev.Dockerfile'),
+      this.templatePath('Dockerfile'),
+      this.destinationPath('Dockerfile'),
       this.props
     );
     this.fs.copyTpl(

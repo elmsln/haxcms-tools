@@ -9,4 +9,6 @@ COPY ./services/haxcms/apache2.conf /etc/apache2/apache2.conf
 COPY . /var/www/html
 COPY --from=haxcms /var/www/html/build /var/www/html/build
 COPY --from=haxcms /var/www/html/dist /var/www/html/dist
+COPY --from=haxcms /var/www/html/assets/babel-top.js /var/www/html/assets/babel-top.js
+COPY --from=haxcms /var/www/html/assets/babel-bottom.js /var/www/html/assets/babel-bottom.js
 RUN chown -R www-data:www-data /var/www/html

@@ -10,9 +10,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
 
   haxcms:
-    build:
-      context: .
-      dockerfile: dev.Dockerfile
+    image: elmsln/haxcms:latest
     volumes:
       - ./:/var/www/html/_sites/<%= name %>:delegated
       - ./_config:/var/www/html/_config:delegated
@@ -35,5 +33,5 @@ services:
     build:
       context: ./custom
     volumes:
-      - ./custom:/home/node/app
+      - ./custom:/home/node/app:delegated
       - /home/node/app/node_modules
