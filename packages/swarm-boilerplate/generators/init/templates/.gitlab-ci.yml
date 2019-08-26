@@ -9,6 +9,8 @@ build-heymp-swarm:
   tags:
     - heymp
   script:
+    # Cache busters
+    - sed -i -E "s/file=\"site\.json\"/file=\"site\.json\?v${CI_COMMIT_SHORT_SHA}\"/" index.htm
     - docker-compose build
   only:
     - master
@@ -18,6 +20,8 @@ build-cod1-swarm:
   tags:
     - cod1
   script:
+    # Cache busters
+    - sed -i -E "s/file=\"site\.json\"/file=\"site\.json\?v${CI_COMMIT_SHORT_SHA}\"/" index.htm
     - docker-compose build
   only:
     - master
