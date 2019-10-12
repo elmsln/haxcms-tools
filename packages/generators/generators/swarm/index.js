@@ -64,5 +64,16 @@ module.exports = class extends Generator {
       this.destinationPath('_config/my-custom-elements.js'),
       this.props
     );
+
+    // modify the rollup configs
+    this.changeRollupConfig('custom/rollup.config.js')
+    this.changeRollupConfig('custom/rollup.amd.config.js')
+  }
+
+  async changeRollupConfig(path) {
+    if (path) {
+      const rollupConfig = await this.fs.read(path, 'UTF8')
+      this.fs.write(path, rollupConfig.replace(`path.resolve('../../../package.json`, `path.resolve('/haxcms/package.json`))
+    }
   }
 };

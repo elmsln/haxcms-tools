@@ -15,36 +15,12 @@ build-heymp-swarm:
   only:
     - master
 
-build-cod1-swarm:
-  stage: build
-  tags:
-    - cod1
-  script:
-    # Cache busters
-    - sed -i -E "s/file=\"site\.json\"/file=\"site\.json\?v${CI_COMMIT_SHORT_SHA}\"/" index.html
-    - docker-compose build
-  only:
-    - master
-
 deploy-heymp-swarm:
   stage: deploy
   tags:
     - heymp
   variables:
     HOST: "swarm.heymp.com"
-  script:
-    - pwd
-    - ls -la
-    - docker stack deploy -c docker-compose.yml --resolve-image always <%= name %>
-  only:
-    - master
-
-deploy-cod1-swarm:
-  stage: deploy
-  variables:
-    HOST: "courses.science.psu.edu"
-  tags:
-    - cod1
   script:
     - pwd
     - ls -la
