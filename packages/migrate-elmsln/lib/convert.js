@@ -134,7 +134,7 @@ const imagesScrape = async (item, destination, url) => {
 
   // update the remote img tag and capture the output
   // first we will alter the image url to fit the destination
-  const updatedImageUrl = join('assets', basename(imageUrl))
+  const updatedImageUrl = join('files', basename(imageUrl))
   const newHTML = await page.evaluate((updatedImageUrl) => {
     document
       .querySelector('.main-section .field-name-field-image img')
@@ -145,8 +145,8 @@ const imagesScrape = async (item, destination, url) => {
   // travel to the image page
   const imageSource = await page.goto(imageUrl);
   // save the image locally to assets
-  ensureDirSync(join(destination, 'assets'))
-  writeFileSync(join(destination, 'assets', basename(imageUrl)), await imageSource.buffer());
+  ensureDirSync(join(destination, 'files'))
+  writeFileSync(join(destination, 'files', basename(imageUrl)), await imageSource.buffer());
   // close the browser
   await browser.close()
   // return the new HTML
@@ -176,7 +176,7 @@ const downloadImgTags = async ({ html, destination, url }) => {
       if (src.includes(url)) {
         downloadQueue = [...downloadQueue, src]
         // update the src in the html
-        $(el).attr('src', join('assets', basename(src)))
+        $(el).attr('src', join('files', basename(src)))
       }
     })
 
@@ -186,9 +186,9 @@ const downloadImgTags = async ({ html, destination, url }) => {
       const page = await browser.newPage()
       // navigate to the image on the interwebs
       const imageSource = await page.goto(src)
-      // save the image locally to assets
-      ensureDirSync(join(destination, 'assets'))
-      writeFileSync(join(destination, 'assets', basename(src)), await imageSource.buffer());
+      // save the image locally to files
+      ensureDirSync(join(destination, 'files'))
+      writeFileSync(join(destination, 'files', basename(src)), await imageSource.buffer());
       await browser.close()
     }))
 
