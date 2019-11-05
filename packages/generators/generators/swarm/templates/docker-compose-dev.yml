@@ -3,6 +3,8 @@ services:
   reverse-proxy:
     image: traefik # The official Traefik docker image
     command: --api --docker # Enables the web UI and tells Traefik to listen to docker
+    networks:
+      - traefik-public
     ports:
       - "80:80"     # The HTTP port
       # - "8080:8080" # The Web UI (enabled by --api)
@@ -10,28 +12,20 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
 
   haxcms:
-    image: elmsln/haxcms:latest
     volumes:
       - ./:/var/www/html/_sites/<%= name %>:delegated
       - ./_config:/var/www/html/_config:delegated
-    labels:
-      - "traefik.enable=true" # Enable reverse-proxy for this service
-      - "traefik.frontend.rule=Host:<%= name %>.haxcms.localhost"
+      - ./custom:/var/www/html/_sites/<%= name %>/custom:delegated
 
-  # vscode:
-  #   image: codercom/code-server
-  #   labels:
-  #     - "traefik.enable=true" # Enable reverse-proxy for this service
-  #     - "traefik.port=8443"
-  #     - "traefik.frontend.rule=Host:vscode.haxcms.localhost"
-  #   command: code-server --no-auth --allow-http # if using proxy add: --allow-http
-  #   volumes:
-  #     - ./:/home/coder/project/code-server:delegated
-  #     - ~/.ssh:/root/.ssh:ro
-  
+  vscode:
+    volumes:
+      - ./:/home/coder/project/<%= name %>:delegated
+      - ./custom:/home/coder/project/<%= name %>/custom:delegated
+      # - ~/.ssh:/root/.ssh:ro
+
   custom:
-    build:
-      context: ./custom
     volumes:
       - ./custom:/home/node/app:delegated
-      - /home/node/app/node_modules
+
+networks:
+  traefik-public:

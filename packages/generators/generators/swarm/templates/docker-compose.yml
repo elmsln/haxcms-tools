@@ -1,20 +1,19 @@
 version: '3.7'
 services:
 
-  haxcms:
+  live:
     build:
       context: .
-    image: <%= name %>_haxcms:${CI_COMMIT_SHORT_SHA:-latest}
-    # volumes:
-    #   - /var/www/html/dist
-    #   - /var/www/html/build
-    #   - .:/var/www/html/
+    image: <%= name %>_live:${CI_COMMIT_SHORT_SHA:-latest}
     networks:
       - traefik-public
     labels:
       - "traefik.enable=true"
       - "traefik.port=80"
       - "traefik.frontend.rule=Host:<%= name %>.${HOST:-docker.localhost}"
+    volumes:
+      - live_files:/var/www/html
+      - custom_files:/var/www/html/custom
     deploy:
       labels:
         - "traefik.enable=true"
@@ -26,6 +25,75 @@ services:
       update_config:
         order: start-first
 
+  haxcms:
+    build:
+      context: .
+      target: haxcms
+    image: <%= name %>_haxcms:${CI_COMMIT_SHORT_SHA:-latest}
+    networks: 
+      - traefik-public
+    volumes:
+      - live_files:/var/www/html/_sites/<%= name %>
+      - custom_files:/var/www/html/_sites/<%= name %>/custom
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=80"
+      - "traefik.docker.network=traefik-public"
+      - "traefik.frontend.rule=Host:haxcms.<%= name %>.${HOST:-docker.localhost}"
+      - "traefik.tags=traefik-public"
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.port=80"
+        - "traefik.docker.network=traefik-public"
+        - "traefik.frontend.rule=Host:haxcms.<%= name %>.${HOST:-docker.localhost}"
+        - "traefik.tags=traefik-public"
+      replicas: 1
+      update_config:
+        order: start-first
+
+  vscode:
+    image: codercom/code-server:v2
+    command: --auth=none --port=8080
+    volumes:
+      - live_files:/home/coder/project/<%= name %>:delegated
+      - custom_files:/home/coder/project/<%= name %>/custom:delegated
+      - /home/coder/.local
+      # - ~/.ssh:/root/.ssh:ro
+    networks:
+      - traefik-public
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=8080"
+      - "traefik.docker.network=traefik-public"
+      - "traefik.frontend.rule=Host:vscode.<%= name %>.${HOST:-docker.localhost}"
+      - "traefik.tags=traefik-public"
+    # start as super user not good
+    # alternative https://github.com/docker/compose/issues/3270
+    user: "0:0"
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.port=8080"
+        - "traefik.docker.network=traefik-public"
+        - "traefik.frontend.rule=Host:vscode.<%= name %>.${HOST:-docker.localhost}"
+        - "traefik.tags=traefik-public"
+      replicas: 1
+      update_config:
+        order: start-first
+
+  custom:
+    build:
+      context: ./custom
+    image: <%= name %>_custom:${CI_COMMIT_SHORT_SHA:-latest}
+    volumes:
+      - custom_files:/home/node/app:delegated
+      - /home/node/app/node_modules
+
 networks:
   traefik-public:
     external: true
+
+volumes:
+  live_files:
+  custom_files:
