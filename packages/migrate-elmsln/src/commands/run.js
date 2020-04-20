@@ -13,6 +13,8 @@ class RunCommand extends Command {
   async run() {
     const { flags } = this.parse(RunCommand)
     const jos = path.join(process.cwd(), flags.jos)
+
+    this.flags = flags
     
     // check to make sure we have a jos
     if (!fs.existsSync(jos)) {
@@ -79,7 +81,7 @@ const convertOutlineItem = async ({ item, destination, url, download, self, targ
     // get file contents
     const fileContents = fs.readFileSync(item.location, 'utf8')
     // convert the item one at a time
-    const newHTML = await convert({ html: fileContents, destination, url, download, targets })
+    const newHTML = await convert({ html: fileContents, destination, url, download, targets, self })
     // save the file
     fs.writeFileSync(item.location, newHTML, 'utf8')
     done(null)
@@ -97,6 +99,8 @@ RunCommand.flags = {
   url: flags.string({ char: 'u', description: 'url of the ELMS site that contains the assets.', required: false }),
   skipDownload: flags.boolean({ char: 's', description: 'skip downloading assets using puppeteer.', required: false, default: false}),
   images: flags.boolean({ char: 'i', description: 'convert images defined in img tags to local assets.', required: false, default: false}),
+  imagesTagName: flags.string({ description: 'specify image tag. Required if images option is set.', required: false, default: 'img'}),
+  imagesAttrName: flags.string({ description: 'specify image attribute. Required if images option is set.', required: false, default: 'src'}),
   tokens: flags.boolean({ char: 't', description: 'convert tokens defined in img tags to local assets.', required: false, default: false}),
 }
 

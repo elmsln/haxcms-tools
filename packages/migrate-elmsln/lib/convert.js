@@ -3,12 +3,13 @@ const { join, basename } = require('path')
 const puppeteer = require('puppeteer')
 const cheerio = require('cheerio')
 
-module.exports = async ({ html, destination, url, download, targets }) => {
+module.exports = async ({ html, destination, url, download, targets, self }) => {
   let convertedHTML = html
 
   // convert all <img> tags
   if (targets.images) {
-    convertedHTML = await downloadImgTags({ html: convertedHTML, destination, url, download });
+    const { imagesTagName, imagesAttrName } = self.flags
+    convertedHTML = await downloadImgTags({ html: convertedHTML, destination, url, download, imagesTagName, imagesAttrName });
   }
   // convert all media tokens
   if (targets.tokens) {
@@ -158,7 +159,7 @@ const imagesScrape = async (item, destination, url) => {
  * @param {string} html 
  * @return {string} html
  */
-const downloadImgTags = async ({ html, destination, url }) => {
+const downloadImgTags = async ({ html, destination, url, imagesTagName, imagesAttrName }) => {
   let convertedHTML = html
   const $ = cheerio.load(convertedHTML, {
     decodeEntities: false
@@ -166,17 +167,17 @@ const downloadImgTags = async ({ html, destination, url }) => {
   let downloadQueue = []
 
   // find out if we have images to get
-  const images = $('body').find('img')
+  const images = $('body').find(imagesTagName)
   if (images.length > 0) {
     // find all images with cheerio
-    $('img').each((i, el) => {
+    $(imagesTagName).each((i, el) => {
       // get the src attribute
-      const src = $(el).attr('src')
+      const src = $(el).attr(imagesAttrName)
       // find out if the image url is on our media server
       if (src.includes(url)) {
         downloadQueue = [...downloadQueue, src]
         // update the src in the html
-        $(el).attr('src', join('files', basename(src)))
+        $(el).attr(imagesAttrName, join('files', basename(src)))
       }
     })
 

@@ -1,0 +1,62 @@
+{
+  "name": "@haxcms/haxcms-2-hugo",
+  "description": "Search and replace regex patterns in a HAXcms site.",
+  "version": "0.0.3",
+  "author": "heyMP @heyMP",
+  "bin": {
+    "haxcms-2-hugo": "./bin/run"
+  },
+  "bugs": "https://github.com/elmsln/haxcms-tools/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^2",
+    "batch": "^0.6.1",
+    "cli-progress": "^2.1.1",
+    "node-pandoc": "^0.3.0"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@oclif/test": "^1",
+    "chai": "^4",
+    "eslint": "^5.13",
+    "eslint-config-oclif": "^3.1",
+    "globby": "^8",
+    "mocha": "^5",
+    "nyc": "^13"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "homepage": "https://github.com/elmsln/haxcms-tools",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "Apache 2.0",
+  "main": "src/index.js",
+  "oclif": {
+    "commands": "./src/commands",
+    "bin": "migrate-regex",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "elmsln/haxcms-tools",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint .",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "gitHead": "219c8aba21c02729d486884b714d1a78afd41251",
+  "publishConfig": {
+    "access": "public"
+  }
+}
