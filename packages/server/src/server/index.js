@@ -1,16 +1,19 @@
-const { ApolloServer } = require('apollo-server')
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const fileUpload = require('express-fileupload');
+const path = require('path');
+const app = express();
+const port = 3000
 
-const server = new ApolloServer({
-  modules: [
-    require('./modules/authentication'),
-    require('./modules/app-settings')
-  ],
-  // pass request headers to the resolvers
-  context: ({req}) => ({
-    request: req
-  })
-})
+module.exports = () => {
+  app.use(bodyParser.json());
+  app.use(bodyParser.text());
+  app.use(cors());
+  app.use(fileUpload());
+  app.post('/system/api/saveFile', require('./routes/saveFile.js'));
+  app.post('/system/api/saveNode', require('./routes/saveNode.js'));
+  app.use("/", express.static(path.join(process.cwd(), "_site")));
 
-server.listen().then(({ url }) => {
-  console.log(`🚀  Server ready at ${url}`);
-})
+  app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+}

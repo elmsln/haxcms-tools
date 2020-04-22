@@ -1,20 +1,16 @@
 const {Command, flags} = require('@oclif/command')
-const startServer = require('../../lib/startServer/index.js')
-const polymerServe = require('../../lib/polymerServe/index.js')
+const server = require("../server/index.js")
 
 class StartCommand extends Command {
   async run() {
-    const {flags} = this.parse(StartCommand)
-    startServer()
-    polymerServe()
+    const { flags } = this.parse(StartCommand)
+    server();
   }
 }
 
 StartCommand.description = `Start the server.`
 
 StartCommand.flags = {
-  server: flags.boolean({char: 's', description: 'start backend server'}),
-  frontend: flags.boolean({char: 'f', description: 'start frontend server'})
 }
 
-module.exports = StartCommand
+module.exports = StartCommand;
