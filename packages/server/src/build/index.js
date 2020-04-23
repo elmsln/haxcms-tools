@@ -7,8 +7,7 @@ module.exports = () => {
     stdio: 'inherit',
     cwd: process.cwd(),
     env: {
-      ...process.env,
-      HAXCMS_ENABLED: false
+      ...process.env
     }
   })
 };

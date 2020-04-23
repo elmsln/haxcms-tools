@@ -9,8 +9,11 @@ const matter = require('gray-matter');
       const { referer } = ctx.headers
       const refererUrl = new URL(referer).pathname;
       // get the item from siteJSON
-      const activeItem = siteJSON.items.find(i => i.location === refererUrl);
+      // need to account for location and rererurl being slightly different. basically trim the first and last /
+      // @todo: this is flimsy
+      const activeItem = siteJSON.items.find(i => i.location.split('/').join('') === refererUrl.split('/').join(''));
       const currentFile = matter.read(path.join(process.cwd(), activeItem.id));
+      console.log('currentFile:', currentFile)
       const newFile = { ...currentFile, ...{ content: ctx.request.body.node.body }}
       // write back to the file
       fs.writeFileSync(path.join(process.cwd(), activeItem.id), matter.stringify(newFile));
@@ -19,6 +22,7 @@ const matter = require('gray-matter');
     } catch (error) {
       ctx.status = 304;
       ctx.body = error;
+      console.log(error)
     }
   }
   function countWords(str) {
