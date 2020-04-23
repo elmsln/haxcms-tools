@@ -19,7 +19,7 @@ $ npm install -g @haxcms/fix-folder-structure
 $ haxcms-fix-folder-structure COMMAND
 running command...
 $ haxcms-fix-folder-structure (-v|--version|version)
-@haxcms/fix-folder-structure/0.0.7 darwin-x64 node-v12.13.0
+@haxcms/fix-folder-structure/0.0.9 darwin-x64 node-v12.13.0
 $ haxcms-fix-folder-structure --help [COMMAND]
 USAGE
   $ haxcms-fix-folder-structure COMMAND
@@ -60,5 +60,5 @@ ARGUMENTS
   PATH  path to the site.json file.
 ```
 
-_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.7/src/commands/run.js)_
+_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.9/src/commands/run.js)_
 <!-- commandsstop -->
