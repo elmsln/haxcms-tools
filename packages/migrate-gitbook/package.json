@@ -1,7 +1,7 @@
 {
   "name": "@haxcms/migrate-gitbook",
   "description": "Migrate a Gitbook site to HAXcms.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "heyMP <mgp140@gmail.com>",
   "bin": {
     "migrate-gitbook": "./bin/run"
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@desertnet/scanner": "^1.1.1",
-    "@haxcms/gitbook-2-outline-schema": "^0.0.5",
+    "@haxcms/gitbook-2-outline-schema": "^0.0.6",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^2",

@@ -19,7 +19,7 @@ $ npm install -g @haxcms/migrate-drupal
 $ migrate-drupal COMMAND
 running command...
 $ migrate-drupal (-v|--version|version)
-@haxcms/migrate-drupal/0.0.5 darwin-x64 node-v12.13.0
+@haxcms/migrate-drupal/0.0.6 darwin-x64 node-v12.13.0
 $ migrate-drupal --help [COMMAND]
 USAGE
   $ migrate-drupal COMMAND
@@ -29,7 +29,6 @@ USAGE
 # Commands
 <!-- commands -->
 * [`migrate-drupal help [COMMAND]`](#migrate-drupal-help-command)
-* [`migrate-drupal run`](#migrate-drupal-run)
 
 ## `migrate-drupal help [COMMAND]`
 
@@ -47,19 +46,4 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
-
-## `migrate-drupal run`
-
-Convert a Drupal Book XML export to JSON Outline Schema.
-
-```
-USAGE
-  $ migrate-drupal run
-
-OPTIONS
-  -d, --dest=dest  [default: ./] Destination of the JOS location.
-  -s, --src=src    (required) Source of the drupal book xml file.
-```
-
-_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.5/src/commands/run.js)_
 <!-- commandsstop -->

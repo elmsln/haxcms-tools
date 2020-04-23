@@ -16,28 +16,28 @@ Node server for HAXcms sites.
 <!-- usage -->
 ```sh-session
 $ npm install -g @haxcms/server
-$ hax-server COMMAND
+$ haxcms-server COMMAND
 running command...
-$ hax-server (-v|--version|version)
-@haxcms/server/0.0.5 darwin-x64 node-v12.13.0
-$ hax-server --help [COMMAND]
+$ haxcms-server (-v|--version|version)
+@haxcms/server/0.0.6 darwin-x64 node-v12.13.0
+$ haxcms-server --help [COMMAND]
 USAGE
-  $ hax-server COMMAND
+  $ haxcms-server COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`hax-server help [COMMAND]`](#hax-server-help-command)
-* [`hax-server start`](#hax-server-start)
+* [`haxcms-server help [COMMAND]`](#haxcms-server-help-command)
+* [`haxcms-server start`](#haxcms-server-start)
 
-## `hax-server help [COMMAND]`
+## `haxcms-server help [COMMAND]`
 
-display help for hax-server
+display help for haxcms-server
 
 ```
 USAGE
-  $ hax-server help [COMMAND]
+  $ haxcms-server help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
@@ -48,14 +48,14 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
 
-## `hax-server start`
+## `haxcms-server start`
 
 Start the server.
 
 ```
 USAGE
-  $ hax-server start
+  $ haxcms-server start
 ```
 
-_See code: [src/commands/start.js](https://github.com/elmsln/hax-tools/blob/v0.0.5/src/commands/start.js)_
+_See code: [src/commands/start.js](https://github.com/elmsln/hax-tools/blob/v0.0.6/src/commands/start.js)_
 <!-- commandsstop -->

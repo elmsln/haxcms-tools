@@ -1,7 +1,7 @@
 {
   "name": "@haxcms/migrate-elmsln",
   "description": "Migrate ELMSLN content to HAXcms.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "heyMP @heyMP",
   "bin": {
     "migrate-elmsln": "./bin/run"
