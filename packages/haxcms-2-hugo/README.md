@@ -8,7 +8,7 @@ $ npm install -g @haxcms/haxcms-2-hugo
 $ migrate-regex COMMAND
 running command...
 $ migrate-regex (-v|--version|version)
-@haxcms/haxcms-2-hugo/0.0.6 darwin-x64 node-v12.13.0
+@haxcms/haxcms-2-hugo/0.0.7 darwin-x64 node-v12.13.0
 $ migrate-regex --help [COMMAND]
 USAGE
   $ migrate-regex COMMAND

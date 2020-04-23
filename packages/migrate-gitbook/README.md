@@ -19,7 +19,7 @@ $ npm install -g @haxcms/migrate-gitbook
 $ migrate-gitbook COMMAND
 running command...
 $ migrate-gitbook (-v|--version|version)
-@haxcms/migrate-gitbook/0.0.6 darwin-x64 node-v12.13.0
+@haxcms/migrate-gitbook/0.0.7 darwin-x64 node-v12.13.0
 $ migrate-gitbook --help [COMMAND]
 USAGE
   $ migrate-gitbook COMMAND
@@ -187,5 +187,5 @@ OPTIONS
   -v, --version                  show CLI version
 ```
 
-_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.6/src/commands/run.js)_
+_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.7/src/commands/run.js)_
 <!-- commandsstop -->

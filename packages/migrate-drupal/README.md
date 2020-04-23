@@ -19,7 +19,7 @@ $ npm install -g @haxcms/migrate-drupal
 $ migrate-drupal COMMAND
 running command...
 $ migrate-drupal (-v|--version|version)
-@haxcms/migrate-drupal/0.0.6 darwin-x64 node-v12.13.0
+@haxcms/migrate-drupal/0.0.7 darwin-x64 node-v12.13.0
 $ migrate-drupal --help [COMMAND]
 USAGE
   $ migrate-drupal COMMAND
