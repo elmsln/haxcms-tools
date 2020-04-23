@@ -1,7 +1,7 @@
 {
   "name": "@haxcms/server",
   "description": "Node server for HAXcms sites.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "heyMP @heyMP",
   "bin": {
     "hax-server": "./bin/run"
@@ -21,9 +21,9 @@
     "koa-router": "^8.0.8"
   },
   "devDependencies": {
+    "@oclif/command": "^1",
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
-    "@oclif/command": "^1",
     "chai": "^4",
     "eslint": "^5.13",
     "eslint-config-oclif": "^3.1",

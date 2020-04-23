@@ -19,7 +19,7 @@ $ npm install -g @haxcms/server
 $ hax-server COMMAND
 running command...
 $ hax-server (-v|--version|version)
-@haxcms/server/0.0.4 darwin-x64 node-v12.13.0
+@haxcms/server/0.0.5 darwin-x64 node-v12.13.0
 $ hax-server --help [COMMAND]
 USAGE
   $ hax-server COMMAND
@@ -57,5 +57,5 @@ USAGE
   $ hax-server start
 ```
 
-_See code: [src/commands/start.js](https://github.com/elmsln/hax-tools/blob/v0.0.4/src/commands/start.js)_
+_See code: [src/commands/start.js](https://github.com/elmsln/hax-tools/blob/v0.0.5/src/commands/start.js)_
 <!-- commandsstop -->

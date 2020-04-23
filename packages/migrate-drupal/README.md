@@ -19,7 +19,7 @@ $ npm install -g @haxcms/migrate-drupal
 $ migrate-drupal COMMAND
 running command...
 $ migrate-drupal (-v|--version|version)
-@haxcms/migrate-drupal/0.0.4 darwin-x64 node-v12.13.0
+@haxcms/migrate-drupal/0.0.5 darwin-x64 node-v12.13.0
 $ migrate-drupal --help [COMMAND]
 USAGE
   $ migrate-drupal COMMAND
@@ -61,5 +61,5 @@ OPTIONS
   -s, --src=src    (required) Source of the drupal book xml file.
 ```
 
-_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.4/src/commands/run.js)_
+_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.5/src/commands/run.js)_
 <!-- commandsstop -->

@@ -19,7 +19,7 @@ $ npm install -g @haxcms/migrate-elmsln
 $ migrate-elmsln COMMAND
 running command...
 $ migrate-elmsln (-v|--version|version)
-@haxcms/migrate-elmsln/0.0.4 darwin-x64 node-v12.13.0
+@haxcms/migrate-elmsln/0.0.5 darwin-x64 node-v12.13.0
 $ migrate-elmsln --help [COMMAND]
 USAGE
   $ migrate-elmsln COMMAND
@@ -68,5 +68,5 @@ OPTIONS
   --imagesTagName=imagesTagName    [default: img] specify image tag. Required if images option is set.
 ```
 
-_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.4/src/commands/run.js)_
+_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.5/src/commands/run.js)_
 <!-- commandsstop -->
