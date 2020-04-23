@@ -4,11 +4,11 @@
 # Install
 <!-- usage -->
 ```sh-session
-$ npm install -g @haxcms/migrate-regex
+$ npm install -g @haxcms/haxcms-2-hugo
 $ migrate-regex COMMAND
 running command...
 $ migrate-regex (-v|--version|version)
-@haxcms/migrate-regex/0.0.3 darwin-x64 node-v10.12.0
+@haxcms/haxcms-2-hugo/0.0.4 darwin-x64 node-v12.13.0
 $ migrate-regex --help [COMMAND]
 USAGE
   $ migrate-regex COMMAND

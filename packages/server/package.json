@@ -1,24 +1,24 @@
 {
   "name": "@haxcms/server",
   "description": "Node server for HAXcms sites.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "heyMP @heyMP",
   "bin": {
     "hax-server": "./bin/run"
   },
   "bugs": "https://github.com/elmsln/hax-tools/issues",
   "dependencies": {
-    "bcrypt": "^3.0.6",
-    "jsonwebtoken": "^8.5.1",
     "@11ty/eleventy": "0.10.0",
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "es-dev-server": "^1.46.5",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.3",
     "gray-matter": "^4.0.2",
-    "es-dev-server": "^1.46.5",
-    "koa-router": "^8.0.8",
-    "koa-body": "^4.1.1"
+    "jsonwebtoken": "^8.5.1",
+    "koa-body": "^4.1.1",
+    "koa-router": "^8.0.8"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",

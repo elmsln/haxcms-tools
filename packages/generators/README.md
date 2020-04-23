@@ -15,47 +15,30 @@ Boilerplate files for swarm deployment.
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g @haxcms/swarm-boilerplate
-$ swarm-boilerplate COMMAND
+$ npm install -g @haxcms/generators
+$ haxcms-generators COMMAND
 running command...
-$ swarm-boilerplate (-v|--version|version)
-@haxcms/swarm-boilerplate/0.0.3 darwin-x64 node-v10.12.0
-$ swarm-boilerplate --help [COMMAND]
+$ haxcms-generators (-v|--version|version)
+@haxcms/generators/0.0.4 darwin-x64 node-v12.13.0
+$ haxcms-generators --help [COMMAND]
 USAGE
-  $ swarm-boilerplate COMMAND
+  $ haxcms-generators COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`swarm-boilerplate hello`](#swarm-boilerplate-hello)
-* [`swarm-boilerplate help [COMMAND]`](#swarm-boilerplate-help-command)
+* [`haxcms-generators help [COMMAND]`](#haxcms-generators-help-command)
+* [`haxcms-generators swarm`](#haxcms-generators-swarm)
+* [`haxcms-generators upgrade-browser`](#haxcms-generators-upgrade-browser)
 
-## `swarm-boilerplate hello`
+## `haxcms-generators help [COMMAND]`
 
-Describe the command here
-
-```
-USAGE
-  $ swarm-boilerplate hello
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/hello.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.3/src/commands/hello.js)_
-
-## `swarm-boilerplate help [COMMAND]`
-
-display help for swarm-boilerplate
+display help for haxcms-generators
 
 ```
 USAGE
-  $ swarm-boilerplate help [COMMAND]
+  $ haxcms-generators help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
@@ -65,4 +48,33 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
+
+## `haxcms-generators swarm`
+
+Describe the command here
+
+```
+USAGE
+  $ haxcms-generators swarm
+
+OPTIONS
+  -n, --name=name  (required) machine name of the HAXcms site.
+  -n, --port=port  (required) [default: 80] port of the traefik container
+```
+
+_See code: [src/commands/swarm.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.4/src/commands/swarm.js)_
+
+## `haxcms-generators upgrade-browser`
+
+Display an upgrade your browser message to those that do not support web components
+
+```
+USAGE
+  $ haxcms-generators upgrade-browser
+
+OPTIONS
+  -n, --name=name  (required) machine name of the HAXcms site.
+```
+
+_See code: [src/commands/upgrade-browser.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.4/src/commands/upgrade-browser.js)_
 <!-- commandsstop -->

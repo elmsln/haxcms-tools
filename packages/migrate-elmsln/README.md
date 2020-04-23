@@ -19,7 +19,7 @@ $ npm install -g @haxcms/migrate-elmsln
 $ migrate-elmsln COMMAND
 running command...
 $ migrate-elmsln (-v|--version|version)
-@haxcms/migrate-elmsln/0.0.3 darwin-x64 node-v10.12.0
+@haxcms/migrate-elmsln/0.0.4 darwin-x64 node-v12.13.0
 $ migrate-elmsln --help [COMMAND]
 USAGE
   $ migrate-elmsln COMMAND
@@ -57,14 +57,16 @@ USAGE
   $ migrate-elmsln run
 
 OPTIONS
-  -h, --help          show CLI help
-  -i, --images        convert images defined in img tags to local assets.
-  -j, --jos=jos       (required) location of site.json file.
-  -s, --skipDownload  skip downloading assets using puppeteer.
-  -t, --tokens        convert tokens defined in img tags to local assets.
-  -u, --url=url       url of the ELMS site that contains the assets.
-  -v, --version       show CLI version
+  -h, --help                       show CLI help
+  -i, --images                     convert images defined in img tags to local assets.
+  -j, --jos=jos                    (required) location of site.json file.
+  -s, --skipDownload               skip downloading assets using puppeteer.
+  -t, --tokens                     convert tokens defined in img tags to local assets.
+  -u, --url=url                    url of the ELMS site that contains the assets.
+  -v, --version                    show CLI version
+  --imagesAttrName=imagesAttrName  [default: src] specify image attribute. Required if images option is set.
+  --imagesTagName=imagesTagName    [default: img] specify image tag. Required if images option is set.
 ```
 
-_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.3/src/commands/run.js)_
+_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.4/src/commands/run.js)_
 <!-- commandsstop -->

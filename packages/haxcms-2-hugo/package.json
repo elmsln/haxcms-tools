@@ -1,7 +1,7 @@
 {
   "name": "@haxcms/haxcms-2-hugo",
   "description": "Search and replace regex patterns in a HAXcms site.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": "heyMP @heyMP",
   "bin": {
     "haxcms-2-hugo": "./bin/run"
