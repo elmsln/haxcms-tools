@@ -8,6 +8,7 @@
   },
   "bugs": "https://github.com/elmsln/hax-tools/issues",
   "dependencies": {
+    "@oclif/command": "^1",
     "@11ty/eleventy": "0.10.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
@@ -21,7 +22,6 @@
     "koa-router": "^8.0.8"
   },
   "devDependencies": {
-    "@oclif/command": "^1",
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
     "chai": "^4",
@@ -49,7 +49,7 @@
   "main": "src/index.js",
   "oclif": {
     "commands": "./src/commands",
-    "bin": "hax-server",
+    "bin": "haxcms-server",
     "plugins": [
       "@oclif/plugin-help"
     ]
