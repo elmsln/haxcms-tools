@@ -4,7 +4,7 @@
   "version": "0.0.6",
   "author": "heyMP @heyMP",
   "bin": {
-    "hax-server": "./bin/run"
+    "haxcms-server": "./bin/run"
   },
   "bugs": "https://github.com/elmsln/hax-tools/issues",
   "dependencies": {
