@@ -15,7 +15,10 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-fileupload": "^1.1.7-alpha.3",
-    "gray-matter": "^4.0.2"
+    "gray-matter": "^4.0.2",
+    "es-dev-server": "^1.46.5",
+    "koa-router": "^8.0.8",
+    "koa-body": "^4.1.1"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
