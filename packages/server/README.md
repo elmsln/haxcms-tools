@@ -28,8 +28,20 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`haxcms-server build`](#haxcms-server-build)
 * [`haxcms-server help [COMMAND]`](#haxcms-server-help-command)
 * [`haxcms-server start`](#haxcms-server-start)
+
+## `haxcms-server build`
+
+Create a build.
+
+```
+USAGE
+  $ haxcms-server build
+```
+
+_See code: [src/commands/build.js](https://github.com/elmsln/hax-tools/blob/v0.0.8/src/commands/build.js)_
 
 ## `haxcms-server help [COMMAND]`
 
