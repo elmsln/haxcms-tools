@@ -19,7 +19,6 @@ const matter = require('gray-matter');
     } catch (error) {
       ctx.status = 304;
       ctx.body = error;
-      console.log(error)
     }
   }
   function countWords(str) {
