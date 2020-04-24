@@ -1,12 +1,12 @@
 {
-  "name": "@haxcms/server",
+  "name": "@haxcms/11ty",
   "description": "Node server for HAXcms sites.",
   "version": "0.0.10",
   "author": "heyMP @heyMP",
   "bin": {
-    "haxcms-server": "./bin/run"
+    "hax11ty": "./bin/run"
   },
-  "bugs": "https://github.com/elmsln/hax-tools/issues",
+  "bugs": "https://github.com/elmsln/haxcms-tools/issues",
   "dependencies": {
     "@11ty/eleventy": "0.10.0",
     "@oclif/command": "^1",
@@ -35,7 +35,7 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "homepage": "https://github.com/elmsln/hax-tools",
+  "homepage": "https://github.com/elmsln/haxcms-tools",
   "keywords": [
     "oclif"
   ],
