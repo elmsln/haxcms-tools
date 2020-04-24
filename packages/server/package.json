@@ -1,7 +1,7 @@
 {
   "name": "@haxcms/server",
   "description": "Node server for HAXcms sites.",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "author": "heyMP @heyMP",
   "bin": {
     "haxcms-server": "./bin/run"

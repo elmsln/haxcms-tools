@@ -19,7 +19,7 @@ $ npm install -g @haxcms/generators
 $ haxcms-generators COMMAND
 running command...
 $ haxcms-generators (-v|--version|version)
-@haxcms/generators/0.0.9 darwin-x64 node-v12.13.0
+@haxcms/generators/0.0.10 darwin-x64 node-v12.13.0
 $ haxcms-generators --help [COMMAND]
 USAGE
   $ haxcms-generators COMMAND
@@ -62,7 +62,7 @@ OPTIONS
   -n, --port=port  (required) [default: 80] port of the traefik container
 ```
 
-_See code: [src/commands/swarm.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.9/src/commands/swarm.js)_
+_See code: [src/commands/swarm.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.10/src/commands/swarm.js)_
 
 ## `haxcms-generators upgrade-browser`
 
@@ -76,5 +76,5 @@ OPTIONS
   -n, --name=name  (required) machine name of the HAXcms site.
 ```
 
-_See code: [src/commands/upgrade-browser.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.9/src/commands/upgrade-browser.js)_
+_See code: [src/commands/upgrade-browser.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.10/src/commands/upgrade-browser.js)_
 <!-- commandsstop -->
