@@ -6,7 +6,7 @@ const config = createConfig({ ...{
   port: 8080,
   watch: true,
   open: true,
-  nodeResolve: true,
+  nodeResolve: false,
   rootDir: '_site',
   middlewares: [
     koaBody(),
