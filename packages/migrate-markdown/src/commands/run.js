@@ -21,7 +21,6 @@ class RunCommand extends Command {
       // loop over asyncronously
       files.forEach((file) => {
         // if the file is one of the file extensions we are searching for.
-        console.log(_search.includes(path.extname(file)))
         if (_search.includes(path.extname(file))) {
           // open file
           const fileContents = fs.readFileSync(file, "utf8");
