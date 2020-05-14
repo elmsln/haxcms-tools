@@ -1,6 +1,6 @@
 {
   "name": "@haxcms/gitbook-2-outline-schema",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Convert a Gitbook SUMMARY.md file to a linear json outline schema.",
   "main": "index.js",
   "license": "Apache 2.0",

@@ -19,7 +19,7 @@ $ npm install -g @haxcms/11ty
 $ haxcms-server COMMAND
 running command...
 $ haxcms-server (-v|--version|version)
-@haxcms/11ty/0.0.11 darwin-x64 node-v12.13.0
+@haxcms/11ty/0.0.12 darwin-x64 node-v12.13.0
 $ haxcms-server --help [COMMAND]
 USAGE
   $ haxcms-server COMMAND
@@ -41,7 +41,7 @@ USAGE
   $ haxcms-server build
 ```
 
-_See code: [src/commands/build.js](https://github.com/elmsln/hax-tools/blob/v0.0.11/src/commands/build.js)_
+_See code: [src/commands/build.js](https://github.com/elmsln/hax-tools/blob/v0.0.12/src/commands/build.js)_
 
 ## `haxcms-server help [COMMAND]`
 
@@ -69,5 +69,5 @@ USAGE
   $ haxcms-server serve
 ```
 
-_See code: [src/commands/serve.js](https://github.com/elmsln/hax-tools/blob/v0.0.11/src/commands/serve.js)_
+_See code: [src/commands/serve.js](https://github.com/elmsln/hax-tools/blob/v0.0.12/src/commands/serve.js)_
 <!-- commandsstop -->

@@ -4,14 +4,14 @@
 # Install
 <!-- usage -->
 ```sh-session
-$ npm install -g @haxcms/migrate-regex
-$ migrate-regex COMMAND
+$ npm install -g @haxcms/migrate-markdown
+$ migrate-markdown COMMAND
 running command...
-$ migrate-regex (-v|--version|version)
-@haxcms/migrate-regex/0.0.11 darwin-x64 node-v12.13.0
-$ migrate-regex --help [COMMAND]
+$ migrate-markdown (-v|--version|version)
+@haxcms/migrate-markdown/0.0.12 darwin-x64 node-v12.13.0
+$ migrate-markdown --help [COMMAND]
 USAGE
-  $ migrate-regex COMMAND
+  $ migrate-markdown COMMAND
 ...
 ```
 <!-- usagestop -->
