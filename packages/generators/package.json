@@ -1,7 +1,7 @@
 {
   "name": "@haxcms/generators",
   "description": "Boilerplate files for swarm deployment.",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "author": "heyMP @heyMP",
   "bin": {
     "haxcms-generators": "./bin/run"
