@@ -11,12 +11,12 @@ const matter = require('gray-matter');
       // get the item from siteJSON
       // need to account for location and rererurl being slightly different. basically trim the first and last /
       // @todo: this is flimsy
-      const activeItem = siteJSON.items.find(i => i.location.split('/').join('') === refererUrl.split('/').join(''));
-      const currentFile = matter.read(path.join(process.cwd(), activeItem.id));
+      const activeItem = siteJSON.items.find(i => i.slug.split('/').join('') === refererUrl.split('/').join(''));
+      const currentFile = matter.read(path.join(process.cwd(), activeItem.location.replace('/pages/','/posts/')));
       console.log('currentFile:', currentFile)
       const newFile = { ...currentFile, ...{ content: ctx.request.body.node.body }}
       // write back to the file
-      fs.writeFileSync(path.join(process.cwd(), activeItem.id), matter.stringify(newFile));
+      fs.writeFileSync(path.join(process.cwd(), activeItem.location.replace('/pages/','/posts/')), matter.stringify(newFile));
       // save file
       ctx.status = 200;
     } catch (error) {

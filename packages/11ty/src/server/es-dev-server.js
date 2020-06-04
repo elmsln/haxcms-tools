@@ -7,6 +7,7 @@ const config = createConfig({ ...{
   watch: true,
   open: true,
   nodeResolve: false,
+  preserveSymlinks: true,
   rootDir: '_site',
   middlewares: [
     koaBody(),
