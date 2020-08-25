@@ -13,7 +13,6 @@ const matter = require('gray-matter');
       // @todo: this is flimsy
       const activeItem = siteJSON.items.find(i => i.slug.split('/').join('') === refererUrl.split('/').join(''));
       const currentFile = matter.read(path.join(process.cwd(), activeItem.location.replace('/pages/','/posts/')));
-      console.log('currentFile:', currentFile)
       const newFile = { ...currentFile, ...{ content: ctx.request.body.node.body }}
       // write back to the file
       fs.writeFileSync(path.join(process.cwd(), activeItem.location.replace('/pages/','/posts/')), matter.stringify(newFile));
