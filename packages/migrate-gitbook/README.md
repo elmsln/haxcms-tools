@@ -19,7 +19,7 @@ $ npm install -g @haxcms/migrate-gitbook
 $ migrate-gitbook COMMAND
 running command...
 $ migrate-gitbook (-v|--version|version)
-@haxcms/migrate-gitbook/0.0.13 darwin-x64 node-v12.13.0
+@haxcms/migrate-gitbook/0.0.14 linux-x64 node-v14.16.1
 $ migrate-gitbook --help [COMMAND]
 USAGE
   $ migrate-gitbook COMMAND
@@ -51,7 +51,7 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
 
 ## `migrate-gitbook plugins`
 
@@ -68,7 +68,7 @@ EXAMPLE
   $ migrate-gitbook plugins
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/index.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.9/src/commands/plugins/index.ts)_
 
 ## `migrate-gitbook plugins:install PLUGIN...`
 
@@ -104,7 +104,7 @@ EXAMPLES
   $ migrate-gitbook plugins:install someuser/someplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/install.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.9/src/commands/plugins/install.ts)_
 
 ## `migrate-gitbook plugins:link PLUGIN`
 
@@ -131,7 +131,7 @@ EXAMPLE
   $ migrate-gitbook plugins:link myplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/link.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.9/src/commands/plugins/link.ts)_
 
 ## `migrate-gitbook plugins:uninstall PLUGIN...`
 
@@ -153,7 +153,7 @@ ALIASES
   $ migrate-gitbook plugins:remove
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/uninstall.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.9/src/commands/plugins/uninstall.ts)_
 
 ## `migrate-gitbook plugins:update`
 
@@ -168,7 +168,7 @@ OPTIONS
   -v, --verbose
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/update.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.9/src/commands/plugins/update.ts)_
 
 ## `migrate-gitbook run SUMMARYFILE`
 
@@ -187,5 +187,5 @@ OPTIONS
   -v, --version                  show CLI version
 ```
 
-_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.13/src/commands/run.js)_
+_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.14/src/commands/run.js)_
 <!-- commandsstop -->

@@ -1,7 +1,7 @@
 {
   "name": "@haxcms/migrate-markdown",
   "description": "Convert markdown files to markdown.",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "author": "heyMP @heyMP",
   "bin": {
     "migrate-markdown": "./bin/run"

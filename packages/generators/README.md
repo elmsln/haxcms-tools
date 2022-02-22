@@ -19,7 +19,7 @@ $ npm install -g @haxcms/generators
 $ haxcms-generators COMMAND
 running command...
 $ haxcms-generators (-v|--version|version)
-@haxcms/generators/0.0.13 darwin-x64 node-v12.13.0
+@haxcms/generators/0.0.14 linux-x64 node-v14.16.1
 $ haxcms-generators --help [COMMAND]
 USAGE
   $ haxcms-generators COMMAND
@@ -47,7 +47,7 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
 
 ## `haxcms-generators swarm`
 
@@ -62,7 +62,7 @@ OPTIONS
   -n, --port=port  (required) [default: 80] port of the traefik container
 ```
 
-_See code: [src/commands/swarm.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.13/src/commands/swarm.js)_
+_See code: [src/commands/swarm.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.14/src/commands/swarm.js)_
 
 ## `haxcms-generators upgrade-browser`
 
@@ -76,5 +76,5 @@ OPTIONS
   -n, --name=name  (required) machine name of the HAXcms site.
 ```
 
-_See code: [src/commands/upgrade-browser.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.13/src/commands/upgrade-browser.js)_
+_See code: [src/commands/upgrade-browser.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.14/src/commands/upgrade-browser.js)_
 <!-- commandsstop -->

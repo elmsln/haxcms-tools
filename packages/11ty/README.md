@@ -19,7 +19,7 @@ $ npm install -g @haxcms/11ty
 $ haxcms-server COMMAND
 running command...
 $ haxcms-server (-v|--version|version)
-@haxcms/11ty/0.0.13 darwin-x64 node-v12.13.0
+@haxcms/11ty/0.0.14 linux-x64 node-v14.16.1
 $ haxcms-server --help [COMMAND]
 USAGE
   $ haxcms-server COMMAND
@@ -30,7 +30,6 @@ USAGE
 <!-- commands -->
 * [`haxcms-server build`](#haxcms-server-build)
 * [`haxcms-server help [COMMAND]`](#haxcms-server-help-command)
-* [`haxcms-server serve`](#haxcms-server-serve)
 
 ## `haxcms-server build`
 
@@ -41,7 +40,7 @@ USAGE
   $ haxcms-server build
 ```
 
-_See code: [src/commands/build.js](https://github.com/elmsln/hax-tools/blob/v0.0.13/src/commands/build.js)_
+_See code: [src/commands/build.js](https://github.com/elmsln/hax-tools/blob/v0.0.14/src/commands/build.js)_
 
 ## `haxcms-server help [COMMAND]`
 
@@ -58,16 +57,5 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
-
-## `haxcms-server serve`
-
-Start the server.
-
-```
-USAGE
-  $ haxcms-server serve
-```
-
-_See code: [src/commands/serve.js](https://github.com/elmsln/hax-tools/blob/v0.0.13/src/commands/serve.js)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
 <!-- commandsstop -->

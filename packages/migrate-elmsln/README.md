@@ -19,7 +19,7 @@ $ npm install -g @haxcms/migrate-elmsln
 $ migrate-elmsln COMMAND
 running command...
 $ migrate-elmsln (-v|--version|version)
-@haxcms/migrate-elmsln/0.0.13 darwin-x64 node-v12.13.0
+@haxcms/migrate-elmsln/0.0.14 linux-x64 node-v14.16.1
 $ migrate-elmsln --help [COMMAND]
 USAGE
   $ migrate-elmsln COMMAND
@@ -46,7 +46,7 @@ OPTIONS
   --all  see all commands in CLI
 ```
 
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
+_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
 
 ## `migrate-elmsln run`
 
@@ -68,5 +68,5 @@ OPTIONS
   --imagesTagName=imagesTagName    [default: img] specify image tag. Required if images option is set.
 ```
 
-_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.13/src/commands/run.js)_
+_See code: [src/commands/run.js](https://github.com/elmsln/haxcms-tools/blob/v0.0.14/src/commands/run.js)_
 <!-- commandsstop -->

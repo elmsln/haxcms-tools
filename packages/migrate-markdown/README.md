@@ -8,7 +8,7 @@ $ npm install -g @haxcms/migrate-markdown
 $ migrate-markdown COMMAND
 running command...
 $ migrate-markdown (-v|--version|version)
-@haxcms/migrate-markdown/0.0.13 darwin-x64 node-v12.13.0
+@haxcms/migrate-markdown/0.0.14 linux-x64 node-v14.16.1
 $ migrate-markdown --help [COMMAND]
 USAGE
   $ migrate-markdown COMMAND
