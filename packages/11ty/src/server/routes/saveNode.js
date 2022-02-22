@@ -24,7 +24,4 @@ const matter = require('gray-matter');
       console.log(error)
     }
   }
-  function countWords(str) {
-    return str.trim().split(/\s+/).length;
-  }
   module.exports = saveNode;
