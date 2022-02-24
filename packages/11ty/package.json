@@ -1,16 +1,16 @@
 {
   "name": "@haxcms/11ty",
   "description": "Node server for HAXcms sites.",
-  "version": "0.0.14",
+  "version": "0.0.13",
   "author": "heyMP @heyMP",
   "bin": {
     "hax11ty": "./bin/run"
   },
   "bugs": "https://github.com/elmsln/haxcms-tools/issues",
   "dependencies": {
-    "@11ty/eleventy": "0.10.0",
+    "@11ty/eleventy": "1.0.0",
     "@oclif/command": "^1",
-    "es-dev-server": "^1.46.5",
+    "@web/dev-server": "0.1.30",
     "gray-matter": "^4.0.2",
     "koa-body": "^4.1.1",
     "koa-router": "^8.0.8"

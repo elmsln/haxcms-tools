@@ -1,0 +1,1 @@
+{"version":"0.0.14","commands":{"run":{"id":"run","description":"Correctly fix folder structure of a HAXcms site.","pluginName":"@haxcms/fix-folder-structure","pluginType":"core","aliases":[],"flags":{},"args":[{"name":"path","description":"path to the site.json file.","required":true}]}}}

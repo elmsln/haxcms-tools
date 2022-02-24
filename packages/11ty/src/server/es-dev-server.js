@@ -1,4 +1,4 @@
-const { startServer, createConfig, createMiddlewars } = require('@web/dev-server');
+const { startServer, createConfig, createMiddlewars } = require('es-dev-server');
 const koaBody = require('koa-body');
 const saveNode = require("./routes/saveNode.js")
 
@@ -19,7 +19,7 @@ const config = createConfig({ ...{
     }
   ],
 }, logErrorsToBrowser: true });
-const { logDebug } = require('@web/dev-server/dist/utils/utils.js');
+const { logDebug } = require('es-dev-server/dist/utils/utils.js');
 
 module.exports = () => {
   logDebug('Starting server with config: ', config);
